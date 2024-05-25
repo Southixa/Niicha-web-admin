@@ -9,6 +9,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router";
 import Logo from "../../assets/logos.jpeg";
 import Swal from "sweetalert2";
+import { LoginApi } from "../../api/auth";
 const Login = () => {
   const navigate = useNavigate();
   const [username, setUsername] = useState("");
@@ -22,7 +23,7 @@ const Login = () => {
     setLoading(true);
     try {
       // Perform client-side validation
-      if (!username) {
+      if (username === "") {
         setErrorUsername("username is required!");
         setLoading(false);
         return;
@@ -37,10 +38,10 @@ const Login = () => {
       setErrorPassword("");
 
       // Send registration data to the server
-      const response = await LoginApi(email, password);
+      const response = await LoginApi(username, password);
 
       if (response) {
-        navigate("/");
+        // navigate("/");
         Swal.fire({
           title: "ສຳເລັດ",
           text: "ເຂົ້າສູ່ລະບົບສຳເລັດ",
@@ -48,16 +49,16 @@ const Login = () => {
         });
       } else {
         Swal.fire({
-          title: "ຜິດພາດ",
-          text: "ອີເມວ ຫລື ລະຫັດບໍ່ຖືກຕ້ອງ",
+          title: "ຜິດພາດ1",
+          text: "ອີເມວ ຫລື ລະຫັດບໍ່ຖືກຕ້ອງ1",
           icon: "error",
         });
       }
     } catch (error) {
       // Handle registration errors
       Swal.fire({
-        title: "ຜິດພາດ",
-        text: "ຊື່ຜູ້ໃຊ້ ຫລື ລະຫັດບໍ່ຖືກຕ້ອງ",
+        title: "ຜິດພາດ2",
+        text: "ຊື່ຜູ້ໃຊ້ ຫລື ລະຫັດບໍ່ຖືກຕ້ອງ2",
         icon: "error",
       });
     }
@@ -150,7 +151,7 @@ return (
           </Button>
           <Typography color="gray" className="mt-4 text-center font-normal">
             ທ່ານຍັງບໍ່ເຄີຍລົງທະບຽນແມ່ນບໍ່?{" "}
-            <a href="#" className="font-medium text-gray-900">
+            <a href="/register" className="font-medium text-gray-900">
               ລົງທະບຽນ
             </a>
           </Typography>

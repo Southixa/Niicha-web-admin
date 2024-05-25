@@ -1,5 +1,5 @@
 import axios from "axios";
-import ApiPath from "./api.path";
+import ApiPath from "./apiPath";
 export const LoginApi = async ( username, password ) => {
     const data = {
       username: username,
@@ -14,11 +14,11 @@ export const LoginApi = async ( username, password ) => {
   
     try {
       const response = await axios.post(ApiPath.login, data, config);
-       console.log(response);
+       console.log(response.data);
       if (response.data.success === true) {
         localStorage.setItem("token", response.data.data.token);
-        localStorage.setItem("expiresIn", response.data.data.expiresIn);
-        localStorage.setItem("refreshToken", response.data.data.refreshToken);
+        //localStorage.setItem("expiresIn", response.data.data.expiresIn);
+       localStorage.setItem("refreshToken", response.data.data.refreshToken);
             
         return true;
       } else {

@@ -36,7 +36,8 @@ export const Products = () => {
                             {
                                 listTypeProduct.map((item, index) => {
                                     return (
-                                        <li onClick={() => item.title === typeActive ? setTypeActive(item.title) : setTypeActive(item.title)} className={`bg-[#daa7e2] ${typeActive === item.title ? 'bg-[#e3f3da] border-2 border-black' : ''} px-10 py-6 cursor-pointer rounded-[20px] font-medium text-lg`}>
+                                        <li onClick={() => item.title === typeActive ? setTypeActive(item.title) : setTypeActive(item.title)}
+                                            className={`bg-[#daa7e2] ${typeActive === item.title ? 'bg-[#e3f3da] border-2 border-black' : 'border-2 border-transparent'} px-10 py-6 cursor-pointer rounded-[20px] font-medium border-2 border-transparent text-lg duration-300 transition-all`}>
                                             {item.title}
                                         </li>
                                     )

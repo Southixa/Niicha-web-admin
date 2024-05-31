@@ -82,6 +82,8 @@ const TABLE_ROWS = [
   },
 ];
 
+// theme
+
 export function HistoryTable() {
   return (
     <Card className="h-full w-full px-8">
@@ -92,11 +94,10 @@ export function HistoryTable() {
               {TABLE_HEAD.map((head) => (
                 <th
                   key={head}
-                  className={`border-y border-blue-gray-100 bg-blue-gray-50/50 p-4 ${
-                    TABLE_HEAD[0] ? "text-start" : ""
-                  }`}
+                  className={`border-y border-blue-gray-100 bg-blue-gray-50/50 p-4 ${TABLE_HEAD[0] ? "text-start" : ""
+                    }`}
                 >
-                  <Typography
+                  <Typography style={{ fontFamily: 'Noto Sans Lao' }}
                     variant="small"
                     color="blue-gray"
                     className="font-normal leading-none opacity-70"
@@ -107,7 +108,7 @@ export function HistoryTable() {
               ))}
             </tr>
           </thead>
-          <tbody>
+          <tbody >
             {TABLE_ROWS.map(
               ({ img, name, qty, amount, total, date, status }, index) => {
                 const isLast = index === TABLE_ROWS.length - 1;
@@ -163,8 +164,8 @@ export function HistoryTable() {
                             status === "paid"
                               ? "green"
                               : status === "pending"
-                              ? "amber"
-                              : "red"
+                                ? "amber"
+                                : "red"
                           }
                         />
                       </div>
@@ -226,7 +227,7 @@ export function HistoryTable() {
         </table>
       </CardBody>
       <CardFooter className="flex items-center justify-between border-t border-blue-gray-50 p-4">
-        <Button variant="outlined" size="sm" className=" font-bold">
+        <Button style={{ fontFamily: 'Noto Sans Lao' }} variant="outlined" size="sm" className=" font-bold">
           ກັບຄືນ
         </Button>
         <div className="flex items-center gap-2">
@@ -252,7 +253,7 @@ export function HistoryTable() {
             10
           </IconButton>
         </div>
-        <Button variant="outlined" size="sm">
+        <Button style={{ fontFamily: 'Noto Sans Lao' }} variant="outlined" size="sm">
           ໄປຕໍ່
         </Button>
       </CardFooter>

@@ -25,16 +25,16 @@ const Sidebar = ({ children }) => {
       path: "/",
     },
     // { title: "ຜູ້ໃຊ້", icon: <FaUser />, path: "/student" },
-  
+
     {
       title: "ສິນຄ້າ",
       icon: <FaChalkboardTeacher />,
-      path: "/teacher",
+      path: "/products",
     },
- 
+
     { title: "ປະເພດສິນຄ້າ", icon: <FaCalendar />, path: "/year" },
     { title: "ຂາຍສິນຄ້າ", icon: <FaShoppingCart />, path: "/major" },
-   
+
     {
       title: "ປະຫວັດການສັ່ງຊື້",
       icon: <FaClock />,
@@ -50,10 +50,12 @@ const Sidebar = ({ children }) => {
   ];
   return (
     <div className="flex w-full ">
-      <div className="w-64 bg-[#8fbc8f] fixed top-0 left-0 z-50 h-full  px-4 py-2">
+      <div className="w-64 bg-[#e08cc4] fixed top-0 left-0 z-50 h-full  px-4 py-2">
         <div className="my-2 mb-4">
-          <img src={logo} alt="" className="px-20" />
-          <h1 className="text-2x text-white font-bold text-center py-2 ">
+          <div className=" w-full flex items-center justify-center">
+            <img src={logo} alt="" className=" w-[80px] ic rounded-full" />
+          </div>
+          <h1 className="text-2x text-black font-bold text-center py-2 ">
             Niicha Cafe
           </h1>
           <hr />
@@ -74,8 +76,8 @@ const Sidebar = ({ children }) => {
                   to={items.path}
                   className={({ isActive }) =>
                     isActive
-                      ? " flex mb-2 rounded shadow bg-green-500 py-2 px-1"
-                      : " flex mb-2 rounded hover:shadow hover:bg-green-500 py-2 px-1"
+                      ? " flex items-center mb-2 rounded-full shadow bg-[#e3f3da] py-2 px-3 text-black border-2 border-black"
+                      : " flex items-center bg-white text-black mb-2 rounded-full hover:shadow hover:bg-[#e3f3da] py-2 px-3"
                   }
                 >
                   <div className="mr-3 text-xl font-bold">{items.icon}</div>

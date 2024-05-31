@@ -1,5 +1,9 @@
 import React from "react";
 import userLogo from "../../../assets/man.png";
+import menu from "../../../assets/menu.png"
+import checkout from "../../../assets/check-out.png"
+import permission from "../../../assets/permission.png"
+import result from "../../../assets/result.png"
 const CardDashboard = () => {
   const cardData = [
     {
@@ -7,28 +11,25 @@ const CardDashboard = () => {
       title: "ຂໍ້ມູນຜູ້ໃຊ້",
     },
     {
-      icon: userLogo,
+      icon: menu,
       title: "ຂໍ້ມູນສິນຄ້າ",
     },
-    // {
-    //   icon: userLogo,
-    //   title: "ປະເພດສິນຄ້າ",
-    // },
+    
     {
-      icon: userLogo,
+      icon: checkout,
       title: "ອໍເດີ",
     },
     {
-      icon: userLogo,
+      icon: permission,
       title: "ສິດເຂົ້າໃຊ້",
     },
     {
-      icon: userLogo,
+      icon: result,
       title: "ລາຍງານ",
     },
   ];
   return (
-    <div className="grid grid-cols-3 gap-6 p-8">
+    <div className="grid grid-cols-3 gap-2 p-8">
       {cardData.map((item, index) => (
         <div className="flex  bg-white shadow-lg rounded-lg h-[150px] justify-center items-center  ">
           <div className="text-center justify-start">

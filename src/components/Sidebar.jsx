@@ -27,12 +27,12 @@ const Sidebar = ({ children }) => {
     // { title: "ຜູ້ໃຊ້", icon: <FaUser />, path: "/student" },
 
     {
-      title: "ສິນຄ້າ",
+      title: "ຂາຍສິນຄ້າ",
       icon: <FaChalkboardTeacher />,
-      path: "/products",
+      path: "/sellProduct",
     },
 
-    { title: "ປະເພດສິນຄ້າ", icon: <FaCalendar />, path: "/year" },
+    { title: "ສິນຄ້າ", icon: <FaCalendar />, path: "/product" },
     { title: "ຂາຍສິນຄ້າ", icon: <FaShoppingCart />, path: "/major" },
 
     {
@@ -61,7 +61,7 @@ const Sidebar = ({ children }) => {
           <hr />
           <div className=" text-white font-bold mt-4">
             {data.map((items, index) => (
-              <div>
+              <div key={index}>
                 <>
                   {items.status == true ? (
                     <div className="w-full  h-[20%] text-sm text-slate-300 ">

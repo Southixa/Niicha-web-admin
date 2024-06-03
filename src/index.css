@@ -6,3 +6,8 @@
 html,body{
     font-family: "Noto Sans Lao", sans-serif;
 }
+
+/* Card Product Component */
+.card-product{
+    font-family: 'Roboto',sans-serif;
+}

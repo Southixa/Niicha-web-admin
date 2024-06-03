@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import Sidebar from '../../components/Sidebar'
+import ModalAddProduct from './components/ModalAddProduct'
 
 export const Products = () => {
     const [typeActive, setTypeActive] = useState('DESSERT')
@@ -25,27 +26,25 @@ export const Products = () => {
             path: '/coffee'
         }
     ]
-
-
     return (
         <Sidebar>
-            <div className=' bg-[#eaf1f2] w-full h-screen'>
-                <div className=' flex p-8'>
-                    <div className=' flex-[5]'>
-                        <ul className=' flex items-center gap-[60px]'>
-                            {
-                                listTypeProduct.map((item, index) => {
-                                    return (
-                                        <li onClick={() => item.title === typeActive ? setTypeActive(item.title) : setTypeActive(item.title)}
-                                            className={`bg-[#daa7e2] ${typeActive === item.title ? 'bg-[#e3f3da] border-2 border-black' : 'border-2 border-transparent'} px-10 py-6 cursor-pointer rounded-[20px] font-medium border-2 border-transparent text-lg duration-300 transition-all`}>
-                                            {item.title}
-                                        </li>
-                                    )
-                                })
-                            }
-                        </ul>
+            <div className=' p-8'>
+                <div>
+                    <ul className=' flex items-center gap-[60px]'>
+                        {
+                            listTypeProduct.map((item, index) => {
+                                return (
+                                    <li key={index} onClick={() => item.title === typeActive ? setTypeActive(item.title) : setTypeActive(item.title)}
+                                        className={`bg-[#daa7e2] ${typeActive === item.title ? 'bg-[#e3f3da] border-2 border-black' : 'border-2 border-transparent'} px-10 py-6 cursor-pointer rounded-[20px] font-medium  text-lg`}>
+                                        {item.title}
+                                    </li>
+                                )
+                            })
+                        }
+                    </ul>
+                    <div>
+                        <ModalAddProduct />
                     </div>
-                    <div className=' flex-[2]'>k</div>
                 </div>
             </div>
         </Sidebar>

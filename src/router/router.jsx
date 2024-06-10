@@ -5,6 +5,7 @@ import Register from "../view/auth/Register";
 import Dashboard from "../view/dashboard/Dashboard";
 import { SellProducts } from "../view/sellProduct/SellProducts";
 import { Products } from '../view/product/Products'
+import TableManage from "../view/table/TableManage";
 const RouterPath = () => {
   const router = createBrowserRouter([
     {
@@ -24,8 +25,12 @@ const RouterPath = () => {
       element: <SellProducts />
     },
     {
-      path: 'product',
+      path: '/product',
       element: <Products />
+    },
+    {
+      path: '/table',
+      element: <TableManage/>
     }
   ]);
   return <RouterProvider router={router} />;

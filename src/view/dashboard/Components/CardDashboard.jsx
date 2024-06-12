@@ -14,7 +14,7 @@ const CardDashboard = () => {
       icon: menu,
       title: "ຂໍ້ມູນສິນຄ້າ",
     },
-    
+
     {
       icon: checkout,
       title: "ອໍເດີ",
@@ -31,7 +31,7 @@ const CardDashboard = () => {
   return (
     <div className="grid grid-cols-3 gap-2 p-8">
       {cardData.map((item, index) => (
-        <div className="flex  bg-white shadow-lg rounded-lg h-[150px] justify-center items-center  ">
+        <div key={index} className="flex  bg-white shadow-lg rounded-lg h-[150px] justify-center items-center  ">
           <div className="text-center justify-start">
             <img className="h-16" src={item.icon}></img>
             <div className=" text-xl font-bold mt-2">{item.title}</div>

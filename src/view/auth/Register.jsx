@@ -44,7 +44,7 @@ const Register = () => {
         return;
       }
       setErrorComfirmPassword("");
-    
+
       const response = await RegisterApi(username, password);
 
       if (response) {

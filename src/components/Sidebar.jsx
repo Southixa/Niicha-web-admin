@@ -44,7 +44,7 @@ const Sidebar = ({ children }) => {
     {
       title: "ຈັດການໂຕະ",
       icon: <FaTable />,
-      path: "/history",
+      path: "/tableManage",
     },
     {
       title: "ສິດເຂົ້າໃຊ້",
@@ -52,7 +52,7 @@ const Sidebar = ({ children }) => {
       path: "/checklist",
     },
 
-    { title: "ລາຍງານ", icon: <FaFile />, path: "/report" },
+    { title: "ລາຍງານ", icon: <FaFile />, path: "/reports" },
   ];
   return (
     <div className="flex w-full ">

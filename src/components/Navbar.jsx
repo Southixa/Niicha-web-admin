@@ -25,7 +25,7 @@ const Navbar = () => {
         </div>
 
         <div className="px-5 text-sm">Saiyvoud</div>
-        <Link className="cursor-pointer">
+        <Link to='/login' className="cursor-pointer">
           <FaSignInAlt />
         </Link>
       </div>

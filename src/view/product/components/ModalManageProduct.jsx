@@ -1,7 +1,9 @@
+// ModalManageProduct
+
 import React, { useState } from "react";
 import add from "../../../assets/add.png";
 
-export default function ModalAddProduct() {
+export default function ModalManageProduct() {
     const [showModal, setShowModal] = useState(false);
     const [image, setImage] = useState(null);
 
@@ -16,10 +18,8 @@ export default function ModalAddProduct() {
     return (
         <>
             <div onClick={() => setShowModal(true)}
-                className="w-[20%] cursor-pointer flex bg-green-200 justify-center  items-center text-center rounded-xl">
-                <img src={add} className="h-6 px-2" />
-
-                <h4 className=" text-[20px] font-semibold">ເພີ່ມສິນຄ້າ</h4>
+                className="w-[20%] ml-5 cursor-pointer flex bg-green-200 justify-center  items-center text-center rounded-xl">
+                <h4 className=" text-[20px] font-semibold">ຈັດການສິນຄ້າ</h4>
             </div>
             {showModal ? (
                 <>

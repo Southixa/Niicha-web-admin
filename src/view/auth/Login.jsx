@@ -71,94 +71,94 @@ const Login = () => {
   //   icon: "success",
   // })
 
-return (
-  <div className="w-screen flex justify-center items-center">
-    <div>
-      <Card color="transparent" shadow={false} className="bg-gray-300s">
-        <div className="w-full h-40 flex justify-center items-center">
-          <img src={Logo} className="w-32 h-32 rounded-full object-cover" />
-        </div>
-
-        <Typography variant="h4" color="blue-gray" className="text-center mt-2">
-          Login
-        </Typography>
-        <Typography color="gray" className="mt-1 font-normal text-center">
-          Welcome to Niicha cafe
-        </Typography>
-        <form
-          //onSubmit={handleSubmit}
-          className="mt-8 mb-2 w-80 max-w-screen-lg sm:w-96"
-        >
-          <div className="mb-1 flex flex-col gap-6">
-            <Typography variant="h6" color="blue-gray" className="-mb-3">
-              username
-            </Typography>
-            <Input
-              size="lg"
-              placeholder="username"
-              className=" !border-t-blue-gray-200 focus:!border-t-gray-900"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-              error={errorUsername}
-              labelProps={{
-                className: "before:content-none after:content-none ",
-              }}
-            />
-            {errorUsername !== "" ? (
-              <div className="flex text-red-700"> {errorUsername} </div>
-            ) : (
-              ""
-            )}
-
-            <Typography variant="h6" color="blue-gray" className="-mb-3">
-              Password
-            </Typography>
-            <Input
-              type="password"
-              size="lg"
-              placeholder="********"
-              className=" !border-t-blue-gray-200 focus:!border-t-gray-900"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              labelProps={{
-                className: "before:content-none after:content-none",
-              }}
-            />
-            {errorPassword !== "" ? (
-              <div className="flex text-red-700"> {errorPassword} </div>
-            ) : (
-              ""
-            )}
+  return (
+    <div className="w-screen flex justify-center items-center">
+      <div>
+        <Card color="transparent" shadow={false} className="bg-gray-300s">
+          <div className="w-full h-40 flex justify-center items-center">
+            <img src={Logo} className="w-32 h-32 rounded-full object-cover" />
           </div>
-          <Checkbox
-            label={
-              <Typography
-                variant="small"
-                color="gray"
-                className="flex items-center font-normal"
-              >
-                Remember
-              </Typography>
-            }
-            containerProps={{ className: "-ml-2.5" }}
-          />
-          <Button
-            onClick={(e) => handleSubmit(e)}
-            className="mt-6 text-lg"
-            fullWidth
-          >
-            ເຂົ້າສູ່ລະບົບ
-          </Button>
-          <Typography color="gray" className="mt-4 text-center font-normal">
-            ທ່ານຍັງບໍ່ເຄີຍລົງທະບຽນແມ່ນບໍ່?{" "}
-            <a href="/register" className="font-medium text-gray-900">
-              ລົງທະບຽນ
-            </a>
+
+          <Typography variant="h4" color="blue-gray" className="text-center mt-2">
+            Login
           </Typography>
-        </form>
-      </Card>
+          <Typography color="gray" className="mt-1 font-normal text-center">
+            Welcome to Niicha cafe
+          </Typography>
+          <form
+            //onSubmit={handleSubmit}
+            className="mt-8 mb-2 w-80 max-w-screen-lg sm:w-96"
+          >
+            <div className="mb-1 flex flex-col gap-6">
+              <Typography variant="h6" color="blue-gray" className="-mb-3">
+                username
+              </Typography>
+              <Input
+                size="lg"
+                placeholder="username"
+                className=" !border-t-blue-gray-200 focus:!border-t-gray-900"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+                error={errorUsername}
+                labelProps={{
+                  className: "before:content-none after:content-none ",
+                }}
+              />
+              {errorUsername !== "" ? (
+                <div className="flex text-red-700"> {errorUsername} </div>
+              ) : (
+                ""
+              )}
+
+              <Typography variant="h6" color="blue-gray" className="-mb-3">
+                Password
+              </Typography>
+              <Input
+                type="password"
+                size="lg"
+                placeholder="********"
+                className=" !border-t-blue-gray-200 focus:!border-t-gray-900"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                labelProps={{
+                  className: "before:content-none after:content-none",
+                }}
+              />
+              {errorPassword !== "" ? (
+                <div className="flex text-red-700"> {errorPassword} </div>
+              ) : (
+                ""
+              )}
+            </div>
+            <Checkbox
+              label={
+                <Typography
+                  variant="small"
+                  color="gray"
+                  className="flex items-center font-normal"
+                >
+                  Remember
+                </Typography>
+              }
+              containerProps={{ className: "-ml-2.5" }}
+            />
+            <Button
+              onClick={(e) => handleSubmit(e)}
+              className="mt-6 text-lg"
+              fullWidth
+            >
+              ເຂົ້າສູ່ລະບົບ
+            </Button>
+            <Typography color="gray" className="mt-4 text-center font-normal">
+              ທ່ານຍັງບໍ່ເຄີຍລົງທະບຽນແມ່ນບໍ່?{" "}
+              <a href="/register" className="font-medium text-gray-900">
+                ລົງທະບຽນ
+              </a>
+            </Typography>
+          </form>
+        </Card>
+      </div>
     </div>
-  </div>
-);
+  );
 };
 export default Login;

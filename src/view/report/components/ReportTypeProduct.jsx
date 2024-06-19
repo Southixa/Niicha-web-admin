@@ -1,26 +1,23 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import logo from "../../../assets/logos.jpeg";
-import { usePDF } from 'react-to-pdf';
 
 export const ReportTypeProduct = () => {
-    const { toPDF, targetRef } = usePDF({
-        filename: 'page.pdf',
-        options: {
-            format: [595, 842],
-            unit: 'pt',
-        }
-    });
+
+    const handleDownloadPDF = () => {
+        // Trigger the browser's print dialog
+        window.print()
+    };
 
     return (
         <div className='w-full h-full'>
-            <div id='form_pdf' ref={targetRef}
-                className='w-full h-full flex flex-col justify-center py-10 px-14'>
+            <div id='form_pdf' className='w-full h-full flex flex-col justify-center py-10 px-14'>
                 <div className='flex items-center justify-between'>
-                    <img src={logo} alt="Logo" className='w-24 rounded-md' />
+                    <img src={logo} alt="" className='w-24 rounded-md' />
                     <h1 className='text-[28px] font-semibold'>ລາຍງານປະເພດອາຫານ</h1>
                     <button
                         className='bg-[#e3f3da] text-[20px] px-4 py-4 rounded-full'
-                        onClick={() => toPDF()}>
+                        onClick={handleDownloadPDF}
+                    >
                         ດາວໂຫລດ PDF
                     </button>
                 </div>

@@ -6,6 +6,8 @@ import ModalAddProduct from "./components/ModalAddProduct";
 import ModalManageProduct from "./components/ModalManageProduct";
 export const Products = () => {
   const [typeActive, setTypeActive] = useState("DESSERT");
+  // const [cart, setCart] = useState([])
+  // const [show, setShow] = useState(true)
   const listTypeProduct = [
     {
       id: 1,
@@ -29,6 +31,19 @@ export const Products = () => {
     },
   ];
 
+  // function handleClickCart(item) {
+  //   let isPresent = false
+  //   cart.forEach((product) => {
+  //     if (item.id === product.id) {
+  //       isPresent = true
+  //     }
+  //   })
+  //   if (isPresent) {
+  //     return
+  //   }
+  //   setCart({ ...cart, item })
+  //   console.log(cart);
+  // }
   return (
     <Sidebar>
       <div className=" bg-[#eaf1f2] w-full h-screen">
@@ -57,7 +72,7 @@ export const Products = () => {
           <ModalAddProduct />
           <ModalManageProduct />
         </div>
-        <CardProduct />
+        <CardProduct typeActive={typeActive} />
       </div>
     </Sidebar>
   );

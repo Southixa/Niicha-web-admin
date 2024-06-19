@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import Sidebar from '../../components/Sidebar'
-import { CardProducts } from './components/CardProducts'
+import { CardSellProducts } from './components/CardSellProducts'
 import { CartProduct } from './components/CartProduct'
 
 export const SellProducts = () => {
@@ -27,11 +27,19 @@ export const SellProducts = () => {
             path: '/coffee'
         }
     ]
-    console.log(typeActive);
+
+    const [cart, setCart] = useState([]);
+
+    const addToCart = (menu) => {
+        // console.log(menu);
+        setCart([...cart, menu])
+    }
+
+
 
     return (
         <Sidebar>
-            <div className=' bg-[#eaf1f2] w-full '>
+            <div className=' bg-[#eaf1f2] h-full w-full '>
                 <div className=' flex h-full'>
                     <div className=' flex-[4] p-8'>
                         <ul className=' flex items-center gap-[60px]'>
@@ -47,11 +55,11 @@ export const SellProducts = () => {
                             }
                         </ul>
                         <div>
-                            <CardProducts typeActive={typeActive} />
+                            <CardSellProducts typeActive={typeActive} addToCart={addToCart} />
                         </div>
                     </div>
                     <div className=' flex-[3] bg-[#f0f7d7]'>
-                        <CartProduct />
+                        <CartProduct cart={cart} />
                     </div>
                 </div>
             </div>

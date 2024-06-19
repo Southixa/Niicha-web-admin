@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 
 import logo from "../../../assets/logos.jpeg";
 
-export default function ModalConfirm() {
+export default function ModalConfirm({ cart, amount }) {
     const [showModal, setShowModal] = React.useState(false);
     const [showBill, setShowBill] = useState(false)
     const navigate = useNavigate();
@@ -21,6 +21,9 @@ export default function ModalConfirm() {
             setShowBill(true);
         })
     }
+    // console.log(amount);
+    const totalQty = cart.reduce((totalQty, item) => totalQty + (amount[item.id] || 1), 0)
+    const totalAmount = cart.reduce((total, item) => total + (amount[item.id] || 1) * item.price, 0);
     return (
         <>
             <button
@@ -33,13 +36,13 @@ export default function ModalConfirm() {
             {showModal ? (
                 <>
                     <div
-                        className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none"
+                        className="justify-center items-center flex overflow-x-hidden fixed inset-0 z-50 outline-none focus:outline-none"
                     >
-                        <div className="relative w-auto my-6 mx-auto max-w-3xl">
+                        <div className="relative w-auto my-2 mx-auto max-w-3xl">
                             {/*content*/}
                             <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-[#e3f3da] outline-none focus:outline-none">
                                 {/*header*/}
-                                <div className="flex items-start justify-between p-5 border-b border-solid border-blueGray-200 rounded-t">
+                                <div className="flex items-start pt-2 justify-between px-5 border-b border-solid border-blueGray-200 rounded-t">
                                     <h3 className="text-2xl font-semibold bg-[#dcfcff] py-2 px-6 rounded-[50px]">
                                         ຄຳສັ່ງຊື້ລ່າສຸດ
                                     </h3>
@@ -66,22 +69,32 @@ export default function ModalConfirm() {
                                             </tr>
                                         </thead>
                                         <tbody>
+                                            {cart.map((item, index) => (
+                                                <tr key={index}>
+                                                    <td className="text-center border-2 border-black">{item.id}</td>
+                                                    <td className="flex justify-center border border-black py-1">
+                                                        <img className="w-16 h-16 rounded-md" src={item.picture} alt="" />
+                                                    </td>
+                                                    <td className="border-2 border-black text-center">{item.nameLao}</td>
+                                                    <td className="border-2 border-black text-center">{amount[item.id] || 1}</td>
+                                                    <td className="border-2 border-black text-center">{(amount[item.id] || 1) * item.price} ₭</td>
+                                                    <td className="border-2 border-black"></td>
+                                                </tr>
+                                            ))}
+                                            {/* Calculate total */}
                                             <tr>
-                                                <td className=" text-center border-2 border-black">P001</td>
-                                                <td className=" flex justify-center ">
-                                                    <img className=" w-16 rounded-md"
-                                                        src="https://images.immediate.co.uk/production/volatile/sites/30/2020/08/chorizo-mozarella-gnocchi-bake-cropped-9ab73a3.jpg?resize=768,574" alt="" />
+                                                <td colSpan="4" className="text-right border-2 border-black font-bold">ລວມທັງໝົດ</td>
+                                                <td className="border-2 border-black text-center font-bold">
+                                                    {cart.reduce((total, item) => total + (amount[item.id] || 0) * item.price, 0)} ₭
                                                 </td>
-                                                <td className="border-2 border-black text-center">Hotdog</td>
-                                                <td className="border-2 border-black text-center">2</td>
-                                                <td className="border-2 border-black text-center">32000</td>
                                                 <td className="border-2 border-black"></td>
                                             </tr>
                                         </tbody>
+
                                     </table>
                                 </div>
                                 {/*footer*/}
-                                <div className="flex flex-col items-end justify-end p-6 border-t border-solid border-blueGray-200 rounded-b">
+                                <div className="flex flex-col items-end justify-end p-4 border-t border-solid border-blueGray-200 rounded-b">
                                     <div className=" flex flex-col items-center gap-y-2">
                                         <div>
                                             <label htmlFor="pay" className=" inline-block w-[70px] text-[18px]">ເງິນທີ່ຈ່າຍ:</label>
@@ -92,7 +105,7 @@ export default function ModalConfirm() {
                                             <input type="text" className=" py-1 px-2 rounded-sm outline-none" />
                                         </div>
                                     </div>
-                                    <div className=" flex items-center mt-10">
+                                    <div className=" flex items-center mt-6">
                                         <button
                                             className="text-red-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                                             type="button"
@@ -122,59 +135,72 @@ export default function ModalConfirm() {
                 <div className="fixed inset-0 z-50 flex items-center justify-center w-full bg-white/60">
                     <div className="border-2 border-black bg-white py-8 px-4 rounded shadow-lg">
                         <div>
-                            <div className="rounded-md flex justify-center w-full mb-8">
-                                <img src={logo} alt="" className="w-[80px] rounded-md " />
-                            </div>
-                            <div className=" flex justify-between items-center ">
-                                <div>
-                                    <h4>
-                                        ພະນັກງານ: <span>Noy</span>
-                                    </h4>
-                                    <h4>
-                                        Order: No# <span></span>
-                                    </h4>
+                            <div>
+                                <div className="rounded-md flex justify-center w-full mb-8">
+                                    <img src={logo} alt="" className="w-[80px] rounded-md " />
                                 </div>
-                                <div className=" flex flex-col items-end">
-                                    <p>ວັນ ແລະ ເວລາ</p>
-                                    <p className=" flex gap-x-2">
-                                        <span>01/02/2024</span>
-                                        <span>09:30</span>
-                                    </p>
+                                <div className=" flex justify-between items-center ">
+                                    <div>
+                                        <h4>
+                                            ພະນັກງານ: <span>Noy</span>
+                                        </h4>
+                                        <h4>
+                                            Order: No# <span></span>
+                                        </h4>
+                                    </div>
+                                    <div className=" flex flex-col items-end">
+                                        <p>ວັນ ແລະ ເວລາ</p>
+                                        <p className=" flex gap-x-2">
+                                            <span>01/02/2024</span>
+                                            <span>09:30</span>
+                                        </p>
+                                    </div>
                                 </div>
                             </div>
+                            <hr className=" border-gray-500 border-dashed my-5" />
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th className=" w-[100px] font-medium"
+                                            align='center'>ລຳດັບ</th>
+                                        <th className=" w-[100px] font-medium"
+                                            align='start'>ລາຍການອາຫານ</th>
+                                        <th className=" w-[100px] font-medium"
+                                            align='center'>ຈຳນວນ</th>
+                                        <th className=" w-[100px] font-medium"
+                                            align='start'>ລາຄາຕໍ່ໜ່ວຍ</th>
+                                        <th className=" w-[100px] font-medium"
+                                            align='start'>ລາຄາລວມ</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {
+                                        cart.map((item, index) => (
+                                            <tr key={index}>
+                                                <td align="center">{item.id}</td>
+                                                <td align="start">{item.nameLao}</td>
+                                                <td align="center">{amount[item.id] || 1}</td>
+                                                <td align="start">{item.price}</td>
+                                                <td align="start">{(amount[item.id] || 1) * item.price} ₭</td>
+                                            </tr>
+                                        ))
+                                    }
+                                </tbody>
+                            </table>
+
+                            <div className="mt-10">
+                                {/* amount all */}
+                                <p>ຈຳນວນ :<span>{totalQty}</span></p>
+                                <p>ຍອດລວມ :<span>
+                                    {totalAmount} ₭
+                                </span></p>
+                            </div>
+                            <hr className=" border-gray-500 border-dashed my-5" />
+                            <h2 className=" text-[24px] font-semibold mt-5 text-center">ຂອບໃຈທີ່ມາອຸດໜຸນ</h2>
                         </div>
-                        <hr className=" border-gray-500 border-dashed my-5" />
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th className=" w-[100px] font-medium"
-                                        align='center'>ລຳດັບ</th>
-                                    <th className=" w-[100px] font-medium"
-                                        align='start'>ລາຍການອາຫານ</th>
-                                    <th className=" w-[100px] font-medium"
-                                        align='center'>ຈຳນວນ</th>
-                                    <th className=" w-[100px] font-medium"
-                                        align='start'>ລາຄາຕໍ່ໜ່ວຍ</th>
-                                    <th className=" w-[100px] font-medium"
-                                        align='start'>ລາຄາລວມ</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td align="center">1</td>
-                                    <td align="start">Capucino</td>
-                                    <td align="center">2</td>
-                                    <td align="start">40000</td>
-                                    <td align="start">80000</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <div className=" mt-10">
-                            <p>ຈຳນວນ :<span>2</span></p>
-                            <p>ຍອດລວມ :<span>800000</span></p>
+                        <div className="flex justify-center mt-2">
+                            <button onClick={() => setShowBill(false)} className=" w-[140px] py-1 rounded bg-red-500 text-white ">Close bill</button>
                         </div>
-                        <hr className=" border-gray-500 border-dashed my-5" />
-                        <h2 className=" text-[24px] font-semibold mt-5 text-center">ຂອບໃຈທີ່ມາອຸດໜຸນ</h2>
                     </div>
                 </div>
             )}

@@ -34,7 +34,7 @@ const Sidebar = ({ children }) => {
     },
 
     { title: "ຈັດການສິນຄ້າ", icon: <FaCalendar />, path: "/product" },
-    { title: "ອໍເດີ", icon: <FaShoppingCart />, path: "/major" },
+    { title: "ອໍເດີ", icon: <FaShoppingCart />, path: "/order" },
 
     {
       title: "ປະຫວັດການສັ່ງຊື້",
@@ -49,7 +49,7 @@ const Sidebar = ({ children }) => {
     {
       title: "ສິດເຂົ້າໃຊ້",
       icon: <FaCheckSquare />,
-      path: "/checklist",
+      path: "/permission",
     },
 
     { title: "ລາຍງານ", icon: <FaFile />, path: "/reports" },

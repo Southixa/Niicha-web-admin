@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import Sidebar from '../../components/Sidebar'
 
 const TableManage = () => {
-  const [typeActive, setTypeActive] = useState('ໂຕະ 01')
+  const [typeActive, setTypeActive] = useState('')
   const dataTables = [
     {
       id: 1,
@@ -40,7 +40,16 @@ const TableManage = () => {
   return (
     <Sidebar>
       <div className=' bg-[#fff] w-full '>
-        <div className=' flex h-full  p-8'>
+        <div className=' h-full  p-8'>
+          <div className=" flex items-center justify-between mb-10">
+            <h1 className=' text-2xl font-semibold'>
+              ການຈັດການໂຕະ
+            </h1>
+            <button onClick={() => window.location.href = "/addTable"} className=' bg-[#daa7e2] px-6 py-1.5 rounded font-medium'>
+              ເພີ່ມໂຕະໃໝ່
+            </button>
+
+          </div>
           <ul className=' grid grid-cols-4 gap-[60px] w-full'>
             {
               dataTables.map((item, index) => {

@@ -36,9 +36,11 @@ export default function ModalAddProduct() {
                                     <form>
                                         <div className="mb-4">
                                             <label htmlFor="category" className="block mb-2 text-[18px] font-medium">ປະເພດ</label>
-                                            <section className="w-[250px] py-2 px-2 border border-black bg-white">
+                                            <select className="w-[250px] py-2 px-2 border border-black bg-white">
                                                 <option value="">ເລືອກປະເພດ</option>
-                                            </section>
+                                                <option value="">ອາຫານ</option>
+                                                <option value="">ເຄື່ອງດື່ມ</option>
+                                            </select>
                                         </div>
                                         <div className="w-full mb-4">
                                             <h2 className=" text-[18px] font-medium">ອັບໂຫຼດຮູບພາບ</h2>

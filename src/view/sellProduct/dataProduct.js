@@ -3,139 +3,195 @@ import hotddog from '../../assets/img/hotdog.jpg'
 const drink = 'https://www.shopping-d.com/cdn/shop/products/12_743df90b-14bc-4104-8873-380d46fd57ce_800x800.png?v=1661666625'
 import coffee from '../../assets/img/amazon.jpg'
 
-export const dataDessert = [
+
+import d01 from '../../assets/img/product/d01.jpg'
+import d02 from '../../assets/img/product/d02.jpg'
+import d03 from '../../assets/img/product/d03.jpg'
+import d04 from '../../assets/img/product/d04.jpg'
+import d05 from '../../assets/img/product/d05.jpg'
+import d06 from '../../assets/img/product/d06.jpg'
+import d07 from '../../assets/img/product/d07.jpg'
+import d08 from '../../assets/img/product/d08.jpg'
+import d09 from '../../assets/img/product/d09.jpg'
+import d10 from '../../assets/img/product/d10.jpg'
+import d11 from '../../assets/img/product/d11.jpg'
+
+import f01 from '../../assets/img/product/f01.jpg'
+import f02 from '../../assets/img/product/f02.jpg'
+import f03 from '../../assets/img/product/f03.jpg'
+import f04 from '../../assets/img/product/f04.jpg'
+import f05 from '../../assets/img/product/f05.jpg'
+import f06 from '../../assets/img/product/f06.jpg'
+import f07 from '../../assets/img/product/f07.jpg'
+import f08 from '../../assets/img/product/f08.jpg'
+import f09 from '../../assets/img/product/f09.jpg'
+import f10 from '../../assets/img/product/f10.jpg'
+import f11 from '../../assets/img/product/f11.jpg'
+import f12 from '../../assets/img/product/f12.jpg'
+import f13 from '../../assets/img/product/f13.jpg'
+
+export const dataProduct = [
     {
         id: 1,
-        name: 'Amaricano',
-        price: 29000,
-        picture: dessert
-    }, {
+        nameLao: 'ນົມສົ້ມ ໂຍເກິດ ປັ່ນ',
+        nameEng: 'SMOOTHIE YOGURT',
+        price: 55000,
+        picture: d01,
+        detail: "",
+        category: "DRINK"
+    },
+    {
         id: 2,
-        name: 'Pepsi',
-        price: 25000,
-        picture: dessert
-    }, {
+        nameLao: "ກີວີ່ ໂຍເກິດ",
+        nameEng: "KIWI YOGURT",
+        price: 55000,
+        picture: d02,
+        detail: "",
+        category: "DRINK"
+    },
+    {
         id: 3,
-        name: 'Coca Cola',
-        price: 25000,
-        picture: dessert
-    }, {
+        nameLao: "ສຕໍເບີຣີ່ ໂຮມເມດ ໂຍເກິດ",
+        nameEng: "STRAWBERRY HOMEMADE YOGURT",
+        price: 55000,
+        picture: d03,
+        detail: "",
+        category: "DRINK"
+    },
+    {
         id: 4,
-        name: 'Mocha',
-        price: 25000,
-        picture: dessert
-    }, {
+        nameLao: "ຊາຂຽວມັສຊະເຢັນ",
+        nameEng: "ICE MATCHA",
+        price: 45000,
+        picture: d04,
+        detail: "",
+        category: "DRINK"
+    },
+    {
         id: 5,
-        name: 'Amazon',
-        price: 25000,
-        picture: dessert
-    }, {
+        nameLao: "ລິ້ນຈີ່ ສະຕໍເບີຣີ່",
+        nameEng: "LYCHEE STRAWBERRY",
+        price: 59000,
+        picture: d06,
+        detail: "",
+        category: "DRINK"
+    },
+    {
         id: 6,
-        name: 'Capoucino',
-        price: 25000,
-        picture: dessert
+        nameLao: "ຊາໄທ ໂກໂກ້",
+        nameEng: "Thai Tea BlackLava",
+        price: 45000,
+        picture: d07,
+        detail: "",
+        category: "DRINK"
+    },
+    {
+        id: 7,
+        nameLao: "ບູເບີຣີ່ ໂຍເກິດ",
+        nameEng: "BLUEBERRY YOGURT",
+        price: 55000,
+        picture: d08,
+        detail: "",
+        category: "DRINK"
+    },
+    {
+        id: 8,
+        nameLao: "ປັ່ນໂອຣິໂອ້",
+        nameEng: "Oreo Cookie Frappe",
+        price: 52000,
+        picture: d09,
+        detail: "",
+        category: "COFFEE"
+    },
+    {
+        id: 9,
+        nameLao: "ຊາຂຽວມັສຊະປັ່ນ",
+        nameEng: "MATCHA FRAPPE",
+        price: 55000,
+        picture: d10,
+        detail: "",
+        category: "COFFEE"
+    },
+    {
+        id: 10,
+        nameLao: "ສະປາເກັດຕີ້",
+        nameEng: "SPAGHETTI Truffle and Bacon",
+        price: 95000,
+        picture: f01,
+        detail: "",
+        category: "FOOD"
+    },
+    {
+        id: 11,
+        nameLao: "ຄົວຊອງ",
+        nameEng: "Croissant Truffle Soup",
+        price: 95000,
+        picture: f02,
+        detail: "",
+        category: "FOOD"
+    },
+    {
+        id: 12,
+        nameLao: "ພາສຕ້າ",
+        nameEng: "Pasta",
+        price: 85000,
+        picture: f03,
+        detail: "",
+        category: "FOOD"
+    },
+    {
+        id: 13,
+        nameLao: "ໝາກມ່ວງ",
+        nameEng: "Mango and Cream",
+        price: 65000,
+        picture: f04,
+        detail: "",
+        category: "DESSERT"
+    },
+    {
+        id: 14,
+        nameLao: "ສະຕໍເບີຣີ່",
+        nameEng: "Strawberry and Cream",
+        price: 65000,
+        picture: f05,
+        detail: "",
+        category: "DESSERT"
+    },
+    {
+        id: 15,
+        nameLao: "ປາທອດ",
+        nameEng: "Fried Fish",
+        price: 80000,
+        picture: f06,
+        detail: "",
+        category: "DESSERT"
+    },
+    {
+        id: 16,
+        nameLao: "ເບຄ່ອນ & ໄຂ່",
+        nameEng: "Bacon and Egg",
+        price: 70000,
+        picture: f07,
+        detail: "",
+        category: "FOOD"
+    },
+    {
+        id: 17,
+        nameLao: "ກະທຽມເຜັດແຫ້ງເບຄ່ອນ",
+        nameEng: "Spicy Bacon",
+        price: 70000,
+        picture: f08,
+        detail: "",
+        category: "FOOD"
+    },
+    {
+        id: 18,
+        nameLao: "ຄີມຊອສທະເລ",
+        nameEng: "Cream Sauce Seafood",
+        price: 85000,
+        picture: f09,
+        detail: "",
+        category: "FOOD"
     }
 ]
 
-export const dataDrink = [
-    {
-        id: 1,
-        name: 'Hotdog',
-        price: 29000,
-        picture: drink
-    }, {
-        id: 2,
-        name: 'Pepsi',
-        price: 25000,
-        picture: drink
-    }, {
-        id: 3,
-        name: 'Coca Cola',
-        price: 25000,
-        picture: drink
-    }, {
-        id: 4,
-        name: 'Mocha',
-        price: 25000,
-        picture: drink
-    }, {
-        id: 5,
-        name: 'Amazon',
-        price: 25000,
-        picture: drink
-    }, {
-        id: 6,
-        name: 'Capoucino',
-        price: 25000,
-        picture: drink
-    }
-]
-
-
-export const dataFood = [
-    {
-        id: 1,
-        name: 'Hotdog',
-        price: 29000,
-        picture: hotddog
-    }, {
-        id: 2,
-        name: 'Pepsi',
-        price: 25000,
-        picture: hotddog
-    }, {
-        id: 3,
-        name: 'Coca Cola',
-        price: 25000,
-        picture: hotddog
-    }, {
-        id: 4,
-        name: 'Mocha',
-        price: 25000,
-        picture: hotddog
-    }, {
-        id: 5,
-        name: 'Amazon',
-        price: 25000,
-        picture: hotddog
-    }, {
-        id: 6,
-        name: 'Capoucino',
-        price: 25000,
-        picture: hotddog
-    }
-]
-
-export const dataCoffee = [
-    {
-        id: 1,
-        name: 'Amaricano',
-        price: 29000,
-        picture: coffee
-    }, {
-        id: 2,
-        name: 'Pepsi',
-        price: 25000,
-        picture: coffee
-    }, {
-        id: 3,
-        name: 'Coca Cola',
-        price: 25000,
-        picture: coffee
-    }, {
-        id: 4,
-        name: 'Mocha',
-        price: 25000,
-        picture: coffee
-    }, {
-        id: 5,
-        name: 'Amazon',
-        price: 25000,
-        picture: coffee
-    }, {
-        id: 6,
-        name: 'Capoucino',
-        price: 25000,
-        picture: coffee
-    }
-]

@@ -6,7 +6,7 @@ import { FaArrowRight } from "react-icons/fa6";
 import { NavLink } from 'react-router-dom';
 
 export const Reports = () => {
-    const [typeActive, setTypeActive] = useState('ລາຍງານປະເພດອາຫານ')
+    const [typeActive, setTypeActive] = useState('')
 
     return (
         <Sidebar>
@@ -17,12 +17,13 @@ export const Reports = () => {
                             dataReport.map((item, index) => {
                                 return (
                                     <NavLink to={item.path} key={index} onClick={() => item.title === typeActive ? setTypeActive(item.title) : setTypeActive(item.title)}
-                                        className={` ${typeActive === item.title ? 'bg-[#e3f3da] border-2 border-black' : 'border-2 border-transparent bg-[#f9ccea]'} w-[220px] flex flex-col px-1 py-4 cursor-pointer rounded-[20px]  font-medium  text-[20px] text-center`}>
+                                        className={` ${typeActive === item.title ? 'bg-[#e3f3da] border-2 border-black' : 'border-2 border-transparent bg-[#f9ccea]'} w-[220px] flex flex-col px-1 py-4 cursor-pointer rounded-[20px]  
+                                        hover:border-black hover:border-2 duration-300 font-medium  text-[20px] text-center`}>
                                         <h2>
                                             {item.title}
                                         </h2>
                                         <div className=' flex justify-end mt-1'>
-                                            <FaArrowRight className='bg-[#deb6e4] w-[40px] h-[40px] rounded-full p-1 text-[30px] text-white' />
+                                            <FaArrowRight className='bg-[#deb6e4] w-[40px] h-[40px] rounded-full p-1 text-[30px] text-white ' />
                                         </div>
                                     </NavLink>
                                 )

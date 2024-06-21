@@ -16,7 +16,8 @@ import {
   FaShoppingCart,
   FaSquare,
   FaClock,
-  FaTable
+  FaTable,
+  FaFolderOpen
 } from "react-icons/fa";
 const Sidebar = ({ children }) => {
   const data = [
@@ -34,6 +35,7 @@ const Sidebar = ({ children }) => {
     },
 
     { title: "ຈັດການສິນຄ້າ", icon: <FaCalendar />, path: "/product" },
+    { title: "ຈັດການປະເພດສິນຄ້າ", icon: <FaFolderOpen />, path: "/product" },
     { title: "ອໍເດີ", icon: <FaShoppingCart />, path: "/order" },
 
     {

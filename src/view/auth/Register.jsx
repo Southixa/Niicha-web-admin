@@ -60,7 +60,7 @@ const Register = () => {
         setLoading(false);
       }
     } catch (error) {
-      console.log(error);
+      // console.log(error);
       Swal.fire({
         title: "ເກີດຂໍ້ຜິດພາດ",
         text: "ລົງທະບຽນບໍ່ສຳເລັດ",

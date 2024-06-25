@@ -1,78 +1,78 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Sidebar from "../../components/Sidebar";
 import add from "../../assets/add.png";
 import CardProduct from "./components/CardProduct";
 import ModalAddProduct from "./components/ModalAddProduct";
 import ModalManageProduct from "./components/ModalManageProduct";
+import { GetProductTypeApi } from "../../api/product_type";
+import Swal from "sweetalert2";
+import { notify } from "../../utils";
+import { EMessage } from "../../constant";
+import { GetProductApi } from "../../api/product";
+import Loading from "../../components/Loading";
 export const Products = () => {
-  const [typeActive, setTypeActive] = useState("DESSERT");
-  // const [cart, setCart] = useState([])
-  // const [show, setShow] = useState(true)
-  const listTypeProduct = [
-    {
-      id: 1,
-      title: "DESSERT",
-      path: "/dessert",
-    },
-    {
-      id: 2,
-      title: "FOOD",
-      path: "/food",
-    },
-    {
-      id: 3,
-      title: "DRINK",
-      path: "/drink",
-    },
-    {
-      id: 4,
-      title: "COFFEE",
-      path: "/coffee",
-    },
-  ];
+  const [selectedTypeId, setSelectedTypeId] = useState("");
 
-  // function handleClickCart(item) {
-  //   let isPresent = false
-  //   cart.forEach((product) => {
-  //     if (item.id === product.id) {
-  //       isPresent = true
-  //     }
-  //   })
-  //   if (isPresent) {
-  //     return
-  //   }
-  //   setCart({ ...cart, item })
-  //   console.log(cart);
-  // }
+  const [type, setType] = useState([]);
+  const [product, setProduct] = useState([]);
+  const [loading, setLoading] = useState(false);
+
+  const autoFetchingData = async (fetchApi, setData) => {
+    const response = await fetchApi();
+    if(!response) {
+       notify.error(EMessage.getData)
+       return;
+    }
+    setData(response);
+   }
+
+  const fetchData = async () => {
+    setLoading(true);
+    await Promise.all([
+      autoFetchingData(GetProductTypeApi, setType),
+      autoFetchingData(GetProductApi, setProduct)
+    ]);
+    setLoading(false);
+   }
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
   return (
     <Sidebar>
-      <div className=" bg-[#eaf1f2] w-full h-screen">
-        <div className=" flex p-8">
-          <div className=" flex-[5]">
-            <ul className=" flex items-center gap-[25px]">
-              {listTypeProduct.map((item, index) => {
+      <div>
+        <div className="grid grid-cols-12 mt-4 px-8">
+            <ul className="col-span-9 flex flex-wrap w-full gap-4">
+              <div className="w-full flex justify-center">
+                <Loading className={"py-12"} show={loading && type.length === 0} />
+              </div>
+              {type.map((item, index) => {
                 return (
                   <li
+                    key={index}
                     onClick={() =>
-                      item.title === typeActive
-                        ? setTypeActive(item.title)
-                        : setTypeActive(item.title)
+                      item.name === selectedTypeId
+                        ? setSelectedTypeId(item.PTID)
+                        : setSelectedTypeId(item.PTID)
                     }
-                    className={`bg-[#daa7e2] ${typeActive === item.title
+                    className={`bg-[#ffecd5] ${selectedTypeId === item.PTID
                       ? "bg-[#e3f3da] border-2  border-black"
                       : "border-2 border-transparent"
                       } px-10 py-6 cursor-pointer rounded-[20px] font-medium  text-lg duration-300 transition-all`}
                   >
-                    {item.title}
+                    {item.name}
                   </li>
                 );
               })}
             </ul>
+          <div className="col-span-3 flex gap-4 pt-4"> 
+            <ModalAddProduct typeData={type} onAddSuccess={fetchData} />
+            <ModalManageProduct typeData={type} onAddSuccess={fetchData} onDeleteSuccess={fetchData} />
           </div>
-          <ModalAddProduct />
-          <ModalManageProduct />
+
         </div>
-        <CardProduct typeActive={typeActive} />
+        <CardProduct typeData={type} productData={product} selectedTypeId={selectedTypeId} onEditSuccess={fetchData} onDeleteSuccess={fetchData} loading={loading} />
       </div>
     </Sidebar>
   );

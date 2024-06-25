@@ -1,72 +1,47 @@
 import React from "react";
 import plus from "../../../assets/plus.png";
+import { MdEdit } from "react-icons/md";
+import { FaPlus } from "react-icons/fa";
+import ModalEditProduct from "./ModalEditProduct";
+import { cloudinaryResizeImage, formatCurrency } from "../../../helpers";
+import DeleteButton from "../../../components/DeleteButton";
+import { DeleteProductApi } from "../../../api/product";
 
-const CardProduct = ({ typeActive }) => {
-  const product = [
-    {
-      image: "https://img.freepik.com/free-photo/sweet-pastry-assortment-top-view_23-2148516578.jpg?size=626&ext=jpg&ga=GA1.1.1518270500.1717200000&semt=sph",
-      title: "Bakery",
-      price: "28,000 ກີບ",
-      type: 'DESSERT'
-    },
-    {
-      image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQwPG9bnTKXg0DDmiNRd8RH2TmcppqDP4z3ng&s",
-      title: "Bakery",
-      price: "28,000 ກີບ",
-      type: 'DRINK'
-    },
-    {
-      image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRIKAsEP7jdZjhozBl4vLPp7MAMvWfyNczxkg&s",
-      title: "Bakery",
-      price: "28,000 ກີບ",
-      type: 'FOOD'
-    },
-    {
-      image: "https://www.allrecipes.com/thmb/Hqro0FNdnDEwDjrEoxhMfKdWfOY=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/21667-easy-iced-coffee-ddmfs-4x3-0093-7becf3932bd64ed7b594d46c02d0889f.jpg",
-      title: "Milk",
-      price: "28,000 ກີບ",
-      type: 'DRINK'
-    },
-    {
-      image: "https://img.freepik.com/free-photo/fresh-coffee-steams-wooden-table-close-up-generative-ai_188544-8923.jpg",
-      title: "Coffee",
-      price: "28,000 ກີບ",
-      type: 'COFFEE'
-    },
-    {
-      image: "https://d2jx2rerrg6sh3.cloudfront.net/image-handler/picture/2018/4/shutterstock_1By_stockcreations.jpg",
-      title: "Fruit juice",
-      price: "28,000 ກີບ",
-      type: 'DRINK'
-    },
-  ];
+const CardProduct = ({ productData, selectedTypeId, typeData, onEditSuccess, onDeleteSuccess, loading }) => {
 
-  const filteredProducts = typeActive === "ALL" ? product : product.filter(item => item.type === typeActive);
+  const filteredProducts = productData.filter((item) => item?.product_type === selectedTypeId);
 
   return (
-    <div className="w-full h-full grid grid-cols-6 gap-2 px-8">
+    <>
+      {(filteredProducts.length == 0 && !loading) && <div className="text-center my-8">ບໍ່ມີຂໍ້ມູນ</div>}
+      <div className="w-full h-full grid grid-cols-6 gap-4 px-8 mt-8 mb-16">
       {filteredProducts.map((item, index) => (
-        <div key={index} className="flex bg-[#daa7e2] shadow-lg rounded-lg h-[28%]">
-          <div className="px-2">
+        <div key={index} className="flex bg-[#fffcf2] shadow-lg rounded-lg h-full p-2 justify-center">
+          <div className="flex flex-col px-2 w-full">
             <img
-              className="flex h-[130px] w-full py-2 rounded items-center justify-center"
-              src={item.image}
-              alt={item.title}
+              className="flex h-[130px] object-cover w-full py-2 rounded-2xl items-center justify-center"
+              src={cloudinaryResizeImage(item?.image, 300)}
+              alt={item?.name}
             />
-            <div>{item.title}</div>
+            <div>{item?.name}</div>
             <div className="flex row-auto">
-              {item.price}
-              <div
-                onClick={() => alert("ok")}
-                className="flex cursor-pointer mx-auto bg-white rounded-full h-[30%] w-[30%] items-center justify-center"
-              >
-                <img src={plus} className="h-6 p-1" alt="Add" />
+              <p className="text-red-600">{formatCurrency(item?.price)} ກີບ</p>
+            </div>
+            <div className="grow">
+            </div>
+            <div className="flex justify-center items-center gap-4 mt-2">
+              <div>
+                <ModalEditProduct typeData={typeData} currentItem={item} onEditSuccess={onEditSuccess} />
+              </div>
+              <div className="w-8 h-8 bg-white rounded-full flex justify-center items-center">
+                <DeleteButton className={"text-red-400"} id={item?.PID} deleteApi={DeleteProductApi} onSuccess={onDeleteSuccess} />
               </div>
             </div>
           </div>
         </div>
       ))}
     </div>
+    </>
   );
 };
 

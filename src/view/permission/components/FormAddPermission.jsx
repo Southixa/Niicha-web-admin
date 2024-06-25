@@ -1,78 +1,76 @@
-import React, { useState } from 'react'
+import React, { useState } from "react";
+import { useNavigate } from "react-router";
+import Swal from "sweetalert2";
+import { Link } from "react-router-dom";
 import Sidebar from '../../../components/Sidebar'
-import { Link, useNavigate } from 'react-router-dom';
-import Logo from "../../../assets/logos.jpeg";
+import { ErrorMessage, Field, Form, Formik } from "formik";
+import { notify, validationSchema } from "../../../utils";
+import { AddUserApi } from "../../../api/user";
+import { EMessage, Role, SMessage } from "../../../constant";
+import Loading from "../../../components/Loading";
 
 export const FormAddPermission = () => {
+
     const navigate = useNavigate();
-    const [username, setUsername] = useState("");
-    const [password, setPassword] = useState("");
-    const [loading, setLoading] = useState(false);
-    const [errorUsername, setErrorUsername] = useState("");
-    const [errorPassword, setErrorPassword] = useState("");
 
-
+    const handleSubmit = async (values) => {
+        const response = await AddUserApi(values);
+        if(!response) {
+            notify.error(EMessage.add);
+            return;
+        }
+        notify.success(SMessage.add);
+        navigate("/permission");
+    };
 
     return (
         <Sidebar>
-            <section className="bg-gray-50 flex w-full dark:bg-gray-900">
-                <div className="flex flex-col items-center mt-20 px-6 w-[500px] mx-auto md:h-screen lg:py-0">
+            <div className="w-full flex justify-center">
+                <Formik
+                validationSchema={validationSchema.user}
+                enableReinitialize={true}
+                initialValues={{
+                    username: "",
+                    password: "",
+                    role: "",
 
-                    <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
-                        <div className="p-6 sm:p-8">
-                            <h1 className="text-[30px] text-center mt-5 mb-10 font-bold  text-gray-900 dark:text-white">
-                                ເພີ່ມແອັດມິນ
-                            </h1>
-                            <form className=""
-                            //   onSubmit={handleSubmit}
-                            >
-                                <div>
-                                    <label className="block mb-1 text-lg font-medium text-gray-900 dark:text-white">Username</label>
-                                    <input type="text" name="username" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg 
-                block w-full p-2.5 dark:bg-gray-700 mb-[2px] dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                        placeholder="username"
-                                        value={username}
-                                        onChange={(e) => setUsername(e.target.value)}
-                                    />
-                                </div>
-                                {errorUsername !== "" ? (
-                                    <div className="flex text-red-700 text-sm"> {errorUsername} </div>
-                                ) : (
-                                    ""
-                                )}
-
-                                <div className=" mt-2">
-                                    <label className="block mb-1 text-sm font-medium text-gray-900 dark:text-white">Password</label>
-                                    <input type="password" name="password" placeholder="••••••••"
-                                        className="bg-gray-50 border mb-[2px] border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-
-                                        onChange={(e) => setPassword(e.target.value)}
-                                        value={password} />
-                                </div>
-                                {errorPassword !== "" ? (
-                                    <div className="flex text-red-700 text-sm"> {errorPassword} </div>
-                                ) : (
-                                    ""
-                                )}
-
-                                <div className=" mt-2">
-                                    <label className="block mb-1 text-sm font-medium text-gray-900 dark:text-white">Password</label>
-                                    <select className="bg-gray-50 border mb-[2px] border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 cursor-pointer dark:focus:border-blue-500">
-                                        <option value="">- ເລືອກສິດການເຂົ້າເຖິງ -</option>
-                                        <option value="user">User</option>
-                                        <option value="admin">Admin</option>
-                                    </select>
-                                </div>
-
-                                <button type="submit" className="w-full mt-5 mb-3 text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
-                                    {loading ? "ກຳລັງລ໋ອກອິນ" : "ລ໋ອກອິນ"}
-                                </button>
-
-                            </form>
+                }}
+                onSubmit={ async (values) => {
+                    // console.log(values);
+                    await handleSubmit(values)
+                }}
+                >
+                 {({ errors, touched, isSubmitting }) => (
+                    <Form>
+                        <div className="w-[400px] bg-white mt-20 rounded-lg shadow-md border border-gray-200 px-4 py-4">
+                            <p className="text-2xl text-center font-semibold text-gray-800">ເພີ່ມຂໍ້ມູນສິດເຂົ້າໃຊ້</p>
+                            {/*------ username ------*/}
+                            <label className="block mb-1 text-sm font-medium text-gray-900 mt-8">username</label>
+                            <Field disabled={isSubmitting} type="text" name="username" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg block w-full p-2.5 disabled:opacity-50" placeholder="ປ້ອນ username"/>
+                            <ErrorMessage component={"div"} className="text-red-500" name="username" />
+                            {/*------ password ------*/}
+                            <label className="block mb-1 text-sm font-medium text-gray-900 mt-8">ລະຫັດຜ່ານ</label>
+                            <Field disabled={isSubmitting} type="text" name="password" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg block w-full p-2.5 disabled:opacity-50" placeholder="ປ້ອນລະຫັດຜ່ານ"/>
+                            <ErrorMessage component={"div"} className="text-red-500" name="password" />
+                            {/*------ role ------*/}
+                            <label className="block mb-1 text-sm font-medium text-gray-900 mt-8">ສິດເຂົ້າໃຊ້</label>
+                            <Field disabled={isSubmitting} as="select" name="role" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg block w-full p-2.5 disabled:opacity-50" placeholder="ປ້ອນຈຳນວນທີ່ນັ່ງ">
+                                <option value="" disabled>-- ເລຶອກ --</option>
+                                <option value={Role.employee}>{Role.employee}</option>
+                                <option value={Role.admin}>{Role.admin}</option>
+                                <option value={Role.superadmin}>{Role.superadmin}</option>
+                            </Field>
+                            <ErrorMessage component={"div"} className="text-red-500" name="role" />
+                            <div className="flex items-center justify-between gap-4 mt-8">
+                                <button type="button" className="w-full mt-8 bg-gray-400 text-white font-bold py-2 px-4 rounded hover:opacity-90" onClick={() => navigate(-1)}>ຍົກເລີກ</button>
+                                <button disabled={isSubmitting} type="submit" className="w-full mt-8 bg-[#e08cc4] text-white font-bold py-2 px-4 rounded hover:opacity-90 disabled:opacity-50 flex gap-2 justify-center items-center"><Loading show={isSubmitting} size={5} />ຢືນຢັນ</button>
+                            </div>
                         </div>
-                    </div>
-                </div>
-            </section>
+                    </Form>
+                 )}
+                </Formik>
+                
+            </div>
         </Sidebar>
     )
 }

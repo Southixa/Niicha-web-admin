@@ -1,0 +1,79 @@
+import axios from "axios";
+import ApiPath from "./apiPath";
+import { getHeaderConfig } from "../helpers";
+export const GetEmployeeApi = async () => {
+    try {
+      const response = await axios.get(ApiPath.getAllEmployee, getHeaderConfig());
+      // console.log("res of GetEmployeeApi =>> ");
+      // console.log(response?.data?.data);
+      return response?.data?.data;
+    } catch (error) {
+        // console.log("error occured in GetEmployeeApi ==> ", error);
+      return false;
+    }
+};
+
+export const GetOneEmployeeApi = async (id) => {
+    try {
+      const response = await axios.get(`${ApiPath.getOneEmployee}${id}`, getHeaderConfig());
+      // console.log("res of GetOneEmployeeApi =>> ");
+      // console.log(response?.data?.data);
+      return response?.data?.data;
+    } catch (error) {
+        // console.log("error occured in GetOneEmployeeApi ==> ", error);
+      return false;
+    }
+};
+
+export const AddEmployeeApi = async (data) => {
+    const mappingData = {
+        firstname: data?.firstname || "",
+        lastname: data?.lastname || "",
+        gender: data?.gender || "",
+        birthday: data?.birthday || "",
+        address: data?.address || "",
+        phoneNumber: parseInt(data?.phoneNumber) || 0,
+    };
+    try {
+      const response = await axios.post(ApiPath.addEmployee, mappingData, getHeaderConfig());
+      // console.log("res of AddEmployeeApi =>> ");
+      // console.log(response);
+      return response;
+    } catch (error) {
+        // console.log("error occured in AddEmployeeApi ==> ", error);
+      return false;
+    }
+};
+
+
+export const UpdateEmployeeApi = async (id, data) => {
+    const mappingData = {
+        firstname: data?.firstname || "",
+        lastname: data?.lastname || "",
+        gender: data?.gender || "",
+        birthday: data?.birthday || "",
+        address: data?.address || "",
+        phoneNumber: parseInt(data?.phoneNumber) || 0,
+    };
+    try {
+      const response = await axios.put(`${ApiPath.updateEmployee}${id}`, mappingData, getHeaderConfig());
+      // console.log("res of UpdateEmployeeApi =>> ");
+      // console.log(response);
+      return response;
+    } catch (error) {
+        // console.log("error occured in UpdateEmployeeApi ==> ", error);
+      return false;
+    }
+};
+
+export const DeleteEmployeeApi = async (id) => {
+  try {
+    const response = await axios.delete(`${ApiPath.deleteEmployee}${id}`, getHeaderConfig());
+    // console.log("res of DeleteEmployeeApi =>> ");
+    // console.log(response);
+    return response;
+  } catch (error) {
+      // console.log("error occured in DeleteEmployeeApi ==> ", error);
+    return false;
+  }
+};

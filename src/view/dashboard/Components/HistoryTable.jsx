@@ -21,7 +21,7 @@ const TABLE_HEAD = ["ສິນຄ້າ", "ຈຳນວນ", "ລາຄາ", "�
 
 const TABLE_ROWS = [
   {
-    img: "https://docs.material-tailwind.com/img/logos/logo-spotify.svg",
+    img: "",
     name: "Spotify",
     qty: 10,
     amount: "$250",
@@ -33,7 +33,7 @@ const TABLE_ROWS = [
     expiry: "06/2026",
   },
   {
-    img: "https://docs.material-tailwind.com/img/logos/logo-amazon.svg",
+    img: "",
     name: "Amazon",
     qty: 10,
     amount: "$500",
@@ -45,7 +45,7 @@ const TABLE_ROWS = [
     expiry: "06/2026",
   },
   {
-    img: "https://docs.material-tailwind.com/img/logos/logo-pinterest.svg",
+    img: "",
     name: "Pinterest",
     qty: 10,
     amount: "$340",
@@ -57,7 +57,7 @@ const TABLE_ROWS = [
     expiry: "06/2026",
   },
   {
-    img: "https://docs.material-tailwind.com/img/logos/logo-google.svg",
+    img: "",
     name: "Google",
     qty: 10,
     amount: "$100",
@@ -69,7 +69,7 @@ const TABLE_ROWS = [
     expiry: "06/2026",
   },
   {
-    img: "https://docs.material-tailwind.com/img/logos/logo-netflix.svg",
+    img: "",
     name: "netflix",
     qty: 10,
     amount: "$140",

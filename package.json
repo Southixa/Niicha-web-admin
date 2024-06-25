@@ -20,8 +20,10 @@
     "@react-pdf/renderer": "^3.4.4",
     "axios": "^1.6.8",
     "boxicons": "^2.1.4",
+    "crypto-js": "^4.2.0",
     "date-fns": "^3.6.0",
     "file-saver": "^2.0.5",
+    "formik": "^2.4.6",
     "html2canvas": "^1.4.1",
     "html2pdf.js": "^0.10.1",
     "jspdf": "^2.5.1",
@@ -30,6 +32,7 @@
     "material-react-table": "^2.13.0",
     "pdfmake": "^0.2.10",
     "pspdfkit": "^2024.3.2",
+    "qrcode.react": "^3.1.0",
     "react": "18.2.0",
     "react-calendar": "^5.0.0",
     "react-date-range": "^2.0.1",
@@ -41,7 +44,8 @@
     "react-router-dom": "^6.23.1",
     "react-to-pdf": "^1.0.1",
     "react-to-print": "^2.15.1",
-    "sweetalert2": "^11.11.1"
+    "sweetalert2": "^11.11.1",
+    "yup": "^1.4.0"
   },
   "devDependencies": {
     "@types/react": "18.2.45",

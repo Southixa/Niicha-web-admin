@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Swal from 'sweetalert2'
 import { useNavigate } from "react-router-dom";
 
@@ -6,11 +6,69 @@ import { useNavigate } from "react-router-dom";
 // const Swal = require('sweetalert2')
 
 import logo from "../../../assets/logos.jpeg";
+import { cloudinaryResizeImage, formatCurrency } from "../../../helpers";
+import SellButton from "./SellButton";
 
-export default function ModalConfirm({ cart, amount }) {
+export default function ModalConfirm({ disabled = false, productList = [], onSellSuccess = () => {} }) {
     const [showModal, setShowModal] = React.useState(false);
     const [showBill, setShowBill] = useState(false)
     const navigate = useNavigate();
+
+    const [payAmount, setPayAmount] = useState(0);
+    const [change, setChange] = useState(0);
+
+    const seenItemsId = [];
+
+    const getTotalAmount = (PID) => {
+      let amount = 0
+      productList.forEach((item) => {
+        if(item?.PID === PID) {
+          amount++;
+        }
+      });
+      return amount;
+    }
+  
+    const getTotalPrice = (PID) => {
+      let price = 0
+      productList.forEach((item) => {
+        if(item?.PID === PID) {
+          price += item?.price;
+        }
+      });
+      return formatCurrency(price);
+    }
+  
+    const calTotalPrice = () => {
+      let total = 0
+      productList.forEach((item) => {
+        total += item?.price;
+      });
+      return total;
+    }
+
+    const callTotalAmount = () => {
+      return productList.length;
+    }
+
+    const calChange = (value) => {
+        let change = 0;
+        if(typeof +value !== 'number') {
+          setChange(change);
+          return
+        }
+        const payAmount = +value || 0;
+        setPayAmount(payAmount);
+        const totalAmount = calTotalPrice();
+
+        if(payAmount > totalAmount) {
+            change = payAmount - totalAmount;
+            setChange(change);
+            return
+        }
+        setChange(change);
+        return;
+    }
 
     const alertSuccess = () => {
         setShowModal(false);
@@ -21,13 +79,22 @@ export default function ModalConfirm({ cart, amount }) {
             setShowBill(true);
         })
     }
-    // console.log(amount);
-    const totalQty = cart.reduce((totalQty, item) => totalQty + (amount[item.id] || 1), 0)
-    const totalAmount = cart.reduce((total, item) => total + (amount[item.id] || 1) * item.price, 0);
+
+    const onCloseBill = () => {
+        setShowBill(false);
+        onSellSuccess()
+    }
+
+    useEffect(() => {
+        setPayAmount(0);
+        setChange(0);
+    }, [productList])
+
     return (
         <>
             <button
-                className="bg-green-400 active:bg-green-500 w-full py-2 font-semibold rounded-lg hover:shadow-lg outline-none focus:outline-none  ease-linear transition-all duration-150"
+                disabled={disabled}
+                className="bg-green-400 mt-8 active:bg-green-500 w-full py-2 font-semibold rounded-lg outline-none focus:outline-none  ease-linear transition-all duration-150 disabled:opacity-50"
                 type="button"
                 onClick={() => setShowModal(true)}
             >
@@ -51,7 +118,7 @@ export default function ModalConfirm({ cart, amount }) {
                                         onClick={() => setShowModal(false)}
                                     >
                                         <span className="bg-transparent text-black opacity-5 h-6 w-6 text-2xl block outline-none focus:outline-none">
-                                            ×
+                                            x
                                         </span>
                                     </button>
                                 </div>
@@ -69,23 +136,30 @@ export default function ModalConfirm({ cart, amount }) {
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            {cart.map((item, index) => (
-                                                <tr key={index}>
-                                                    <td className="text-center border-2 border-black">{item.id}</td>
-                                                    <td className="flex justify-center border border-black py-1">
-                                                        <img className="w-16 h-16 rounded-md" src={item.picture} alt="" />
-                                                    </td>
-                                                    <td className="border-2 border-black text-center">{item.nameLao}</td>
-                                                    <td className="border-2 border-black text-center">{amount[item.id] || 1}</td>
-                                                    <td className="border-2 border-black text-center">{(amount[item.id] || 1) * item.price} ₭</td>
-                                                    <td className="border-2 border-black"></td>
-                                                </tr>
-                                            ))}
+                                            {productList.map((item, index) => {
+                                                if(seenItemsId.includes(item.PID)) {
+                                                    return null
+                                                } else {
+                                                    seenItemsId.push(item.PID);
+                                                    return (
+                                                        <tr key={index}>
+                                                            <td className="text-center border-2 border-black">{item?.PID}</td>
+                                                            <td className="flex justify-center border border-black py-1">
+                                                                <img className="w-16 h-16 object-cover rounded-md" src={cloudinaryResizeImage(item?.image, 200)} alt="" />
+                                                            </td>
+                                                            <td className="border-2 border-black text-center">{item?.name}</td>
+                                                            <td className="border-2 border-black text-center">{getTotalAmount(item?.PID)}</td>
+                                                            <td className="border-2 border-black text-center">{getTotalPrice(item?.PID)} ກີບ</td>
+                                                            <td className="border-2 border-black"></td>
+                                                        </tr>
+                                                    )
+                                                }
+                                            })}
                                             {/* Calculate total */}
                                             <tr>
                                                 <td colSpan="4" className="text-right border-2 border-black font-bold">ລວມທັງໝົດ</td>
                                                 <td className="border-2 border-black text-center font-bold">
-                                                    {cart.reduce((total, item) => total + (amount[item.id] || 0) * item.price, 0)} ₭
+                                                    {formatCurrency(calTotalPrice())} ກີບ
                                                 </td>
                                                 <td className="border-2 border-black"></td>
                                             </tr>
@@ -98,11 +172,11 @@ export default function ModalConfirm({ cart, amount }) {
                                     <div className=" flex flex-col items-center gap-y-2">
                                         <div>
                                             <label htmlFor="pay" className=" inline-block w-[70px] text-[18px]">ເງິນທີ່ຈ່າຍ:</label>
-                                            <input type="text" className=" py-1 px-2 rounded-sm outline-none" />
+                                            <input type="text" className=" py-1 px-2 rounded-sm outline-none" onChange={(e) => calChange(e.target.value)} />
                                         </div>
                                         <div>
                                             <label htmlFor="change" className=" inline-block w-[70px] text-[18px]">ເງິນທອນ:</label>
-                                            <input type="text" className=" py-1 px-2 rounded-sm outline-none" />
+                                            <input disabled type="text" className=" py-1 px-2 rounded-sm outline- bg-white opacity-60 none" value={formatCurrency(change)} />
                                         </div>
                                     </div>
                                     <div className=" flex items-center mt-6">
@@ -113,16 +187,7 @@ export default function ModalConfirm({ cart, amount }) {
                                         >
                                             ປິດ
                                         </button>
-                                        <button
-                                            className=" bg-[#e08cc4] active:bg-[#d66eb4]
-                                        font-semibold text-sm px-6 
-                                        py-3 rounded-[50px] shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 
-                                        ease-linear transition-all duration-150"
-                                            type="button"
-                                            onClick={alertSuccess}
-                                        >
-                                            ຢືນຢັນການສັ່ງຊື້
-                                        </button>
+                                        <SellButton disabled={payAmount < calTotalPrice()} productList={productList} onSuccess={alertSuccess} />
                                     </div>
                                 </div>
                             </div>
@@ -175,31 +240,38 @@ export default function ModalConfirm({ cart, amount }) {
                                 </thead>
                                 <tbody>
                                     {
-                                        cart.map((item, index) => (
-                                            <tr key={index}>
-                                                <td align="center">{item.id}</td>
-                                                <td align="start">{item.nameLao}</td>
-                                                <td align="center">{amount[item.id] || 1}</td>
-                                                <td align="start">{item.price}</td>
-                                                <td align="start">{(amount[item.id] || 1) * item.price} ₭</td>
-                                            </tr>
-                                        ))
+                                        productList.map((item, index) => {
+                                            if(seenItemsId.includes(item?.PID)){
+                                                return null
+                                            } else {
+                                                seenItemsId.push(item?.PID)
+                                                return (
+                                                    <tr key={index}>
+                                                        <td align="center">{(seenItemsId.indexOf(item?.PID) + 1)}</td>
+                                                        <td align="start">{item?.name}</td>
+                                                        <td align="center">{getTotalAmount(item?.PID)}</td>
+                                                        <td align="start">{formatCurrency(item?.price)} ₭</td>
+                                                        <td align="start">{getTotalPrice(item?.PID)} ₭</td>
+                                                    </tr>
+                                                )
+                                            }
+                                        })
                                     }
                                 </tbody>
                             </table>
 
                             <div className="mt-10">
                                 {/* amount all */}
-                                <p>ຈຳນວນ :<span>{totalQty}</span></p>
-                                <p>ຍອດລວມ :<span>
-                                    {totalAmount} ₭
+                                <p>ຈຳນວນ :<span>{callTotalAmount()}</span></p>
+                                <p>ຍອດລວມ :<span className="font-bold">
+                                    {formatCurrency(calTotalPrice())} ₭
                                 </span></p>
                             </div>
                             <hr className=" border-gray-500 border-dashed my-5" />
                             <h2 className=" text-[24px] font-semibold mt-5 text-center">ຂອບໃຈທີ່ມາອຸດໜຸນ</h2>
                         </div>
                         <div className="flex justify-center mt-2">
-                            <button onClick={() => setShowBill(false)} className=" w-[140px] py-1 rounded bg-red-500 text-white ">Close bill</button>
+                            <button onClick={onCloseBill} className=" w-[140px] py-1 rounded bg-red-500 text-white ">Close bill</button>
                         </div>
                     </div>
                 </div>

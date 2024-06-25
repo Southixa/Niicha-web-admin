@@ -3,43 +3,38 @@ import { FaArrowRight } from "react-icons/fa6";
 
 export const dataReport = [
     {
-        title: 'ລາຍງານປະເພດອາຫານ',
+        title: 'ລາຍງານປະເພດສິນຄ້າ',
         icon: <FaArrowRight />,
         path: '/reportProductType'
     },
     {
         title: 'ລາຍງານສິນຄ້າ',
         icon: <FaArrowRight />,
-        path: '/reportProductType'
+        path: '/reportProduct'
     },
     {
-        title: 'ລາຍງານການສັ່ງຊື້',
+        title: 'ລາຍງານອໍເດີທັງໝົດ',
         icon: <FaArrowRight />,
-        path: '/reportProductType'
-    },
-    {
-        title: 'ລາຍງານການຂາຍ',
-        icon: <FaArrowRight />,
-        path: '/reportProductType'
-    },
-    {
-        title: 'ລາຍງານຂໍ້ມູນພະນັກງານ',
-        icon: <FaArrowRight />,
-        path: '/reportProductType'
-    },
-    {
-        title: 'ລາຍງານຂໍ້ມູນໂຕະ',
-        icon: <FaArrowRight />,
-        path: '/reportProductType'
-    },
-    {
-        title: 'ລາຍງານຂໍ້ມູນການຊຳລະເງິນ',
-        icon: <FaArrowRight />,
-        path: '/reportProductType'
+        path: '/reportOrder'
     },
     {
         title: 'ລາຍງານລາຍຮັບ',
         icon: <FaArrowRight />,
-        path: '/reportProductType'
+        path: '/reportIncome'
+    },
+    {
+        title: 'ລາຍງານຂໍ້ມູນພະນັກງານ',
+        icon: <FaArrowRight />,
+        path: '/reportEmployee'
+    },
+    {
+        title: 'ລາຍງານຂໍ້ມູນໂຕະ',
+        icon: <FaArrowRight />,
+        path: '/reportTable'
+    },
+    {
+        title: 'ລາຍງານສິດເຂົ້າໃຊ້',
+        icon: <FaArrowRight />,
+        path: '/reportPermission'
     }
 ]

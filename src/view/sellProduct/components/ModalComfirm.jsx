@@ -1,16 +1,18 @@
 import React, { useEffect, useState } from "react";
 import Swal from 'sweetalert2'
 import { useNavigate } from "react-router-dom";
+import { IoPrintSharp } from "react-icons/io5";
 
 // or via CommonJS
 // const Swal = require('sweetalert2')
 
 import logo from "../../../assets/logos.jpeg";
-import { cloudinaryResizeImage, formatCurrency } from "../../../helpers";
+import { cloudinaryResizeImage, formatCurrency, getCurrentDate, getCurrentDateTime, getCurrentUsername } from "../../../helpers";
 import SellButton from "./SellButton";
 
 export default function ModalConfirm({ disabled = false, productList = [], onSellSuccess = () => {} }) {
     const [showModal, setShowModal] = React.useState(false);
+    const [orderId, setOrderId] = useState(0);
     const [showBill, setShowBill] = useState(false)
     const navigate = useNavigate();
 
@@ -18,6 +20,10 @@ export default function ModalConfirm({ disabled = false, productList = [], onSel
     const [change, setChange] = useState(0);
 
     const seenItemsId = [];
+
+    const handlePrint = () => {
+      window.print();
+    }
 
     const getTotalAmount = (PID) => {
       let amount = 0
@@ -83,6 +89,11 @@ export default function ModalConfirm({ disabled = false, productList = [], onSel
     const onCloseBill = () => {
         setShowBill(false);
         onSellSuccess()
+    }
+
+    const onSellSuccessAndReciveOrderId = (orderId) => {
+        setOrderId(orderId);
+        alertSuccess();
     }
 
     useEffect(() => {
@@ -187,7 +198,7 @@ export default function ModalConfirm({ disabled = false, productList = [], onSel
                                         >
                                             ປິດ
                                         </button>
-                                        <SellButton disabled={payAmount < calTotalPrice()} productList={productList} onSuccess={alertSuccess} />
+                                        <SellButton disabled={payAmount < calTotalPrice()} productList={productList} onSuccess={onSellSuccessAndReciveOrderId} />
                                     </div>
                                 </div>
                             </div>
@@ -198,8 +209,14 @@ export default function ModalConfirm({ disabled = false, productList = [], onSel
             ) : null}
             {showBill && (
                 <div className="fixed inset-0 z-50 flex items-center justify-center w-full bg-white/60">
-                    <div className="border-2 border-black bg-white py-8 px-4 rounded shadow-lg">
+                    <div className="border-2 w-[420px] border-black bg-white py-8 px-4 rounded shadow-lg">
                         <div>
+                            <div className="flex justify-end pr-8 gap-2 items-center no-print">
+                                <div onClick={handlePrint} className="w-8 h-8 bg-gray-100 rounded-md flex justify-center items-center hover:cursor-pointer text-gray-800">
+                                    <IoPrintSharp size={18} />
+                                </div>
+                                <p className="text-gray-700">ປິ້ນ</p>
+                            </div>
                             <div>
                                 <div className="rounded-md flex justify-center w-full mb-8">
                                     <img src={logo} alt="" className="w-[80px] rounded-md " />
@@ -207,17 +224,16 @@ export default function ModalConfirm({ disabled = false, productList = [], onSel
                                 <div className=" flex justify-between items-center ">
                                     <div>
                                         <h4>
-                                            ພະນັກງານ: <span>Noy</span>
+                                            ພະນັກງານ: <span>{getCurrentUsername()}</span>
                                         </h4>
                                         <h4>
-                                            Order: No# <span></span>
+                                            Order: {orderId} <span></span>
                                         </h4>
                                     </div>
                                     <div className=" flex flex-col items-end">
                                         <p>ວັນ ແລະ ເວລາ</p>
                                         <p className=" flex gap-x-2">
-                                            <span>01/02/2024</span>
-                                            <span>09:30</span>
+                                            <span>{getCurrentDateTime()}</span>
                                         </p>
                                     </div>
                                 </div>
@@ -229,7 +245,7 @@ export default function ModalConfirm({ disabled = false, productList = [], onSel
                                         <th className=" w-[100px] font-medium"
                                             align='center'>ລຳດັບ</th>
                                         <th className=" w-[100px] font-medium"
-                                            align='start'>ລາຍການອາຫານ</th>
+                                            align='start'>ລາຍການ</th>
                                         <th className=" w-[100px] font-medium"
                                             align='center'>ຈຳນວນ</th>
                                         <th className=" w-[100px] font-medium"

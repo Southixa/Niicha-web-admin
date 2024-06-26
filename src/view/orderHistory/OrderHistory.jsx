@@ -12,21 +12,12 @@ import { Empty } from '../../components/Empty';
 export const OrderHistory = () => {
     const navigate = useNavigate();
 
-    const [selected, setSelected] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
 
     const [order, setOrder] = useState([]);
     const [loading, setLoading] = useState(false);
 
     const itemsPerPage = 20;
-
-    const handleCheckboxChange = (event, id) => {
-        if (event.target.checked) {
-            setSelected([...selected, id]);
-        } else {
-            setSelected(selected.filter(item => item !== id));
-        }
-    };
 
     const totalPages = Math.ceil(order.length / itemsPerPage);
 
@@ -68,13 +59,6 @@ export const OrderHistory = () => {
                     <table className=' w-full mt-3 shadow-md'>
                         <thead className=' bg-[#ffecd5]'>
                             <tr>
-                                <th className="px-6 py-3 border-b-2 border-gray-300 flex">
-                                    <input
-                                        type="checkbox"
-                                        className="form-checkbox  mr-2"
-                                    />
-                                    ເລືອກທັງໝົດ
-                                </th>
                                 <th className="px-6 py-3 border-b-2 border-gray-300">ເລກອໍເດີ້</th>
                                 <th className="px-6 py-3 border-b-2 border-gray-300">ວັນທີ</th>
                                 <th className="px-6 py-3 border-b-2 border-gray-300">ສະຖານະ</th>
@@ -92,14 +76,6 @@ export const OrderHistory = () => {
                             </tr>
                             {currentData.map((item, index) => (
                                 <tr key={index} className="border-b hover:bg-gray-50">
-                                    <td className="px-6 text-left py-2">
-                                        <input
-                                            type="checkbox"
-                                            className="form-checkbox"
-                                            checked={selected.includes(item?.OID)}
-                                            onChange={(event) => handleCheckboxChange(event, item?.OID)}
-                                        />
-                                    </td>
                                     <td className="px-6 text-center py-2">{item?.OID}</td>
                                     <td className="px-6 text-center py-2">{timeFormatter(item?.createdAt)}</td>
                                     <td className="px-6 text-center py-2">{item?.status}</td>

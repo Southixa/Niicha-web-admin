@@ -54,6 +54,12 @@ export const autoFetchingData = async (fetchApi, setData) => {
   return currentDate;
 }
 
+export function getCurrentDateTime () {
+  const date = new Date();
+  const currentDate = date.getFullYear() + "-" + (date.getMonth() + 1 + "").padStart(2, "0") + "-" + ((date.getDate()) + "").padStart(2, "0") + " " + date.toLocaleTimeString();
+  return currentDate;
+}
+
  export function encryptData (data) {
   return CryptoJS.AES.encrypt(data, SECREAT_KEY).toString();
 }

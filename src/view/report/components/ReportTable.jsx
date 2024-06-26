@@ -55,7 +55,6 @@ export const ReportTable = () => {
                                 <th className='border-2 text-center border-black'>Url Web QRcode</th>
                                 <th className='border-2 text-center border-black'>ລະຫັດ</th>
                                 <th className='border-2 text-center border-black'>ເລກໂຕະ</th>
-                                <th className='border-2 text-center border-black'>ຈຳນວນໂຕະ</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -70,7 +69,6 @@ export const ReportTable = () => {
                                     <td className='border-2 text-center border-black'>{item?.url_web}</td>
                                     <td className='border-2 text-center border-black'>{item?.TID}</td>
                                     <td className='border-2 text-center border-black'>{item?.noTable}</td>
-                                    <td className='border-2 text-center border-black'>{item?.seatAmount}</td>
                                 </tr>
                             ))}
                         </tbody>

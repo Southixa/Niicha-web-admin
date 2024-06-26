@@ -10,6 +10,9 @@ import { IoCloudDownloadOutline } from 'react-icons/io5';
 
 export const ReportOrder = () => {
 
+    const [startDate, setStartDate] = useState("");
+    const [endDate, setEndDate] = useState("");
+
     const navigate = useNavigate();
 
     const handleDownloadPDF = () => {
@@ -17,17 +20,62 @@ export const ReportOrder = () => {
         window.print()
     };
 
+    const [initOrder, setInitOrder] = useState([]);
     const [order, setOrder] = useState([]);
 
+    const fetchData = async () => {
+        const response = await GetOrderApi();
+        if(!response) {
+            notify.error(EMessage.getData)
+            return;
+        }
+        setOrder(response);
+        setInitOrder(response);
+    }
+
     useEffect(() => {
-        autoFetchingData(GetOrderApi, setOrder)
+        fetchData();
     }, [])
+
+    const filterByDate = () => {
+        const filtered = initOrder.filter(item => {
+            const dateValue = Date.parse(timeFormatter(item?.createdAt));
+            const startDateValue = Date.parse(startDate);
+            const endDateValue = Date.parse(endDate);
+            return (dateValue >= startDateValue && dateValue <= endDateValue);
+        })
+        return filtered;
+    }
+
+    useEffect(() => {
+        if(!startDate || !endDate) return;
+        const data = filterByDate();
+        setOrder(data);
+    }, [startDate, endDate])
+
+    const calTotalPrice = (order) => {
+        let total = 0;
+        order?.map(item => {
+            total += item?.totalPrice
+        })
+        return total
+    }
 
     return (
         <div className='w-full h-full'>
             <div id='form_pdf' className='w-full h-full flex flex-col justify-center py-10 px-14'>
                 <div className='w-full mb-8 flex justify-between items-center no-print'>
                     <button onClick={() => navigate(-1)} className='flex items-center justify-center gap-2 text-gray-700 hover:bg-gray-50 px-2 py-2 rounded-md'><FaAngleLeft />ກັບຄືນ</button>
+                    <div className='w-[520px] h-20 flex justify-between pl-20'>
+                        <div>
+                            <p className='mb-2'>ແຕ່ວັນທີ</p>
+                            <input onChange={(e) => setStartDate(e.target.value)} className='w-52 h-10 bg-gray-100 px-2 border border-gray-400 rounded-lg' type="date" placeholder='ຄົ້ນຫາລາຍງານ' />
+                        </div>
+                        <div>
+                            <p className='mb-2'>ຫາວັນ</p>
+                            <input onChange={(e) => setEndDate(e.target.value)} className='w-52 h-10 bg-gray-100 px-2 border border-gray-400 rounded-lg' type="date" placeholder='ຄົ້ນຫາລາຍງານ' />
+                        </div>
+                    </div>
                     <button
                         className='bg-[#e3f3da] text-[16px] px-4 py-2 rounded-full no-print hover:shadow-sm hover:opacity-85 flex justify-center items-center gap-3'
                         onClick={handleDownloadPDF}
@@ -66,6 +114,13 @@ export const ReportOrder = () => {
                                     <td className='border-2 text-center border-black'>{formatCurrency(item?.totalPrice)} ກີບ</td>
                                 </tr>
                             ))}
+                            <tr>
+                                <td className='border-2 text-center border-black'></td>
+                                <td className='border-2 text-center border-black'></td>
+                                <td className='border-2 text-center border-black'></td>
+                                <td className='border-2 text-center border-black font-bold'>ລວມທັງໝົດ:</td>
+                                <td className='border-2 text-center border-black font-bold'>{formatCurrency(calTotalPrice(order))} ກີບ</td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>

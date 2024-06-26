@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Swal from 'sweetalert2';
 import ModalConfirm from './ModalComfirm';
 import { AddOrderForSellApi } from '../../../api/order';
@@ -79,7 +79,7 @@ const SellButton = ({disabled = false, onSuccess = () => {}, productList}) => {
         if(!result){
           return;
         }
-        onSuccess();
+        onSuccess(orderId);
         return;
     }
 

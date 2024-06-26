@@ -96,7 +96,7 @@ const OrderHistoryDetail = () => {
               {
                 orderDetail.map((item, index) => {
                   return (
-                    <OrderHistoryDetialProductCard item={item} index={index} />
+                    <OrderHistoryDetialProductCard item={item} key={index} />
                   )
                 })
               }

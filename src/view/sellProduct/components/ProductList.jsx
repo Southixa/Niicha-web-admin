@@ -30,7 +30,7 @@ const ProductList = ({productData, selectedTypeId, onSelectedProduct}) => {
                     </button>
                 </div>
                 <div className='mt-2'>
-                    <p className='text-white'>{formatCurrency(item?.price)} ກີບ</p>
+                    <p className='text-red-300'>{formatCurrency(item?.price)} ກີບ</p>
                 </div>
             </div> 
             ))}

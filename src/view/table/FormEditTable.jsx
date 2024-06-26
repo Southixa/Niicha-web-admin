@@ -8,7 +8,7 @@ import Sidebar from '../../components/Sidebar'
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import { notify, validationSchema } from "../../utils";
 import { AddTableApi, GetOneTableApi, UpdateTableApi } from "../../api/table";
-import { EMessage, SMessage } from "../../constant";
+import { EMessage, SMessage, clientWebAppBaseUrl } from "../../constant";
 import Loading from "../../components/Loading";
 
 export const FormEditTable = () => {
@@ -17,12 +17,10 @@ export const FormEditTable = () => {
 
     const navigate = useNavigate();
 
-    const clientBaseUrl = "https://nicha-web.netlify.app";
-
     const [currentTable, setCurrentTable] = useState({});
     const [loading , setLoading] = useState(false);
 
-    const [qrCodeUrl, setQrCodeUrl] = useState(clientBaseUrl);
+    const [qrCodeUrl, setQrCodeUrl] = useState(clientWebAppBaseUrl);
     const [tableNumber, setTableNumber] = useState("");
 
     const handleSubmit = async (values) => {
@@ -40,7 +38,7 @@ export const FormEditTable = () => {
             return
         }
         setTableNumber(value);
-        setQrCodeUrl(`${clientBaseUrl}/${value}`);
+        setQrCodeUrl(`${clientWebAppBaseUrl}/${value}`);
     }
 
     const fetchData = async () => {
@@ -53,7 +51,7 @@ export const FormEditTable = () => {
         }
         setCurrentTable(response);
         setTableNumber(response?.noTable);
-        setQrCodeUrl(`${clientBaseUrl}/${response?.noTable}`);
+        setQrCodeUrl(`${clientWebAppBaseUrl}/${response?.noTable}`);
         setLoading(false);
     }
 

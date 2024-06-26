@@ -25,4 +25,6 @@ export const Role = {
     superadmin: "superadmin",
   };
 
+export const clientWebAppBaseUrl = "https://nicha-web.netlify.app";
+
 export const SECREAT_KEY = VITE_SECREAT_KEY;

@@ -29,7 +29,6 @@ export const AddTableApi = async (data) => {
     const mappingData = {
         noTable: parseInt(data?.noTable) || "",
         url: data?.url || "",
-        seatAmount: parseInt(data?.seatAmount) || "",
     };
     try {
       const response = await axios.post(ApiPath.addTable, mappingData, getHeaderConfig());
@@ -47,7 +46,6 @@ export const UpdateTableApi = async (id, data) => {
     const mappingData = {
         noTable: data?.noTable || "",
         url: data?.url || "",
-        seatAmount: data?.seatAmount || "",
     };
     try {
       const response = await axios.put(`${ApiPath.updateTable}${id}`, mappingData, getHeaderConfig());

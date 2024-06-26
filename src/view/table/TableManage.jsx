@@ -54,8 +54,7 @@ const TableManage = () => {
             {table.map((item, index) => {
               return (
                 <div key={index} className='w-full bg-[#ffecd5] rounded-2xl text-center shadow-md hover:shadow-lg relative group pb-8'>
-                  <h1 className='text-3xl font-semibold text-center mt-4'>ເບີ {item?.noTable}</h1>
-                  <p className='text-gray-800 mt-4 mb-4'>{item?.seatAmount} ທີ່ນັ່ງ</p>
+                  <h1 className='text-3xl font-semibold text-center mt-4 mb-4'>ເບີ {item?.noTable}</h1>
                   <div className='w-full flex justify-center item-center'>
                     <Qrcode qrCodeUrl={item?.url_web} />
                   </div>

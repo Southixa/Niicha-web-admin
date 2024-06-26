@@ -28,6 +28,21 @@ export const AddProductTypeApi = async (data) => {
     }
 };
 
+export const UpdateProductTypeApi = async (id, data) => {
+  const mappingData = {
+      name: data?.title || "",
+  };
+  try {
+    const response = await axios.put(`${ApiPath.updateProductType}${id}`, mappingData, getHeaderConfig());
+    console.log("res of AddProductTypeApi =>> ");
+    console.log(response);
+    return response;
+  } catch (error) {
+      console.log("error occured in AddProductTypeApi ==> ", error);
+    return false;
+  }
+};
+
 export const DeleteProductTypeApi = async (id) => {
   try {
     const response = await axios.delete(`${ApiPath.deleteProductType}${id}`, getHeaderConfig());

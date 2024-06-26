@@ -32,7 +32,6 @@ export const validationSchema = {
     table: Yup.object().shape({
         noTable: Yup.number().typeError(WMessage.onlyNumber).required(WMessage.pleaseFillTheField),
         url: Yup.string().required(WMessage.pleaseFillTheField),
-        seatAmount: Yup.number().typeError(WMessage.onlyNumber).required(WMessage.pleaseFillTheField),
     }),
     user: Yup.object().shape({
         username: Yup.string().required(WMessage.pleaseFillTheField),

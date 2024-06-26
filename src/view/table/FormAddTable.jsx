@@ -44,7 +44,6 @@ export const FormAddTable = () => {
                 initialValues={{
                     noTable: tableNumber,
                     url: qrCodeUrl,
-                    seatAmount: "",
 
                 }}
                 onSubmit={ async (values) => {
@@ -67,10 +66,6 @@ export const FormAddTable = () => {
                             <div className="w-full flex justify-center mt-8 opacity-80">
                                 <QRCode size={150} value={qrCodeUrl} />
                             </div>
-                            {/*------ seatAmount ------*/}
-                            <label className="block mb-1 text-sm font-medium text-gray-900 mt-8">ຈຳນວນທີ່ນັ່ງ</label>
-                            <Field disabled={isSubmitting} type="text" name="seatAmount" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg block w-full p-2.5 disabled:opacity-50" placeholder="ປ້ອນຈຳນວນທີ່ນັ່ງ"/>
-                            <ErrorMessage component={"div"} className="text-red-500" name="seatAmount" />
                             <div className="flex items-center justify-between gap-4 mt-8">
                                 <button className="w-full mt-8 bg-gray-400 text-white font-bold py-2 px-4 rounded hover:opacity-90" onClick={() => navigate("/tableManage")}>ຍົກເລີກ</button>
                                 <button disabled={isSubmitting} type="submit" className="w-full mt-8 bg-[#e08cc4] text-white font-bold py-2 px-4 rounded hover:opacity-90 disabled:opacity-50 flex gap-2 justify-center items-center"><Loading show={isSubmitting} size={5} />ຢືນຢັນ</button>

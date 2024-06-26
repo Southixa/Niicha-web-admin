@@ -68,7 +68,7 @@ export const Products = () => {
             </ul>
           <div className="col-span-3 flex gap-4 pt-4"> 
             <ModalAddProduct typeData={type} onAddSuccess={fetchData} />
-            <ModalManageProduct typeData={type} onAddSuccess={fetchData} onDeleteSuccess={fetchData} />
+            <ModalManageProduct typeData={type} onAddSuccess={fetchData} onDeleteSuccess={fetchData} onEditSuccess={fetchData} />
           </div>
 
         </div>

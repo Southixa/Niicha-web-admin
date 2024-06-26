@@ -79,7 +79,6 @@ export const FormEditPermission = () => {
                                 <option value="" disabled>-- ເລຶອກ --</option>
                                 <option value={Role.employee}>{Role.employee}</option>
                                 <option value={Role.admin}>{Role.admin}</option>
-                                <option value={Role.superadmin}>{Role.superadmin}</option>
                             </Field>
                             <ErrorMessage component={"div"} className="text-red-500" name="role" />
                             <div className="flex items-center justify-between gap-4 mt-8">

@@ -27,6 +27,14 @@ export function timeFormatter (value) {
   return value.match(/^\d{4}-\d{2}-\d{2}/)[0];
 }
 
+export const dateTimeToHMS = (date) => {
+  const dateObject = new Date(date);
+  const hour = dateObject.getHours()
+  const minites = dateObject.getMinutes()
+  const seconds = dateObject.getSeconds();
+  return `${hour}:${minites}:${seconds}`;
+}
+
 export const cloudinaryResizeImage = (url, size) => {
   return url.replace("image/upload/", `w_${size}/`)
 }

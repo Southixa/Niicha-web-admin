@@ -3,7 +3,7 @@ import Sidebar from '../../../components/Sidebar'
 import { GetOrderApi } from '../../../api/order';
 import { notify } from '../../../utils';
 import { EMessage } from '../../../constant';
-import { formatCurrency, timeFormatter } from '../../../helpers';
+import { dateTimeToHMS, formatCurrency, timeFormatter } from '../../../helpers';
 import { FaEye } from "react-icons/fa";
 import { useNavigate } from 'react-router-dom';
 import Loading from '../../../components/Loading';
@@ -92,7 +92,7 @@ export const OrderList = () => {
                                         </>
                                     )}
                                     <td className="px-6 text-center py-2">{item?.OID}</td>
-                                    <td className="px-6 text-center py-2">{timeFormatter(item?.createdAt)}</td>
+                                    <td className="px-6 text-center py-2">{timeFormatter(item?.createdAt)}, {dateTimeToHMS(item?.createdAt)}</td>
                                     <td className="px-6 text-center py-2">{item?.status}</td>
                                     <td className="px-6 text-center py-2">{formatCurrency(item?.totalPrice)} ກີບ</td>
                                     <td className="px-6 text-center py-2">{(item?.tables_id) ? "ຂາຍຢູ່ໂຕະ" : "ຂາຍຢູ່ຮ້ານ" }</td>

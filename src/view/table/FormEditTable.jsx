@@ -17,7 +17,7 @@ export const FormEditTable = () => {
 
     const navigate = useNavigate();
 
-    const clientBaseUrl = "https://nicha-web-cafe.netlify.app";
+    const clientBaseUrl = "https://nicha-web.netlify.app";
 
     const [currentTable, setCurrentTable] = useState({});
     const [loading , setLoading] = useState(false);

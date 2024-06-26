@@ -13,7 +13,7 @@ import Loading from "../../components/Loading";
 
 export const FormAddTable = () => {
 
-    const clientBaseUrl = "https://nicha-web-cafe.netlify.app";
+    const clientBaseUrl = "https://nicha-web.netlify.app";
 
     const navigate = useNavigate();
     const [qrCodeUrl, setQrCodeUrl] = useState(clientBaseUrl);

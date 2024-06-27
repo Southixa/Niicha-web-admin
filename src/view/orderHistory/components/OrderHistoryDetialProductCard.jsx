@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react'
 import { GetOneProductApi } from '../../../api/product';
 import { cloudinaryResizeImage, formatCurrency } from '../../../helpers';
 import Loading from '../../../components/Loading';
+import { notify } from '../../../utils';
+import { EMessage } from '../../../constant';
 
 const OrderHistoryDetialProductCard = ({item}) => {
 

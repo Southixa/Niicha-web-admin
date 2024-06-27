@@ -81,7 +81,7 @@ const OrderHistoryDetail = () => {
               </div>
               <div className='flex w-full justify-between mt-2'>
                 <p className='text-gray-700'>ໂຕະເລກທີ:</p>
-                <p className='text-gray-700'>{Order?.tables_id || ""}</p>
+                <p className='text-gray-700'>{Order?.noTable || ""}</p>
               </div>
               <div className='flex w-full justify-between mt-2'>
                 <p className='text-gray-700'>ສະຖານະ:</p>

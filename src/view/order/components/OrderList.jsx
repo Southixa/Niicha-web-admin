@@ -88,7 +88,7 @@ export const OrderList = () => {
                                             <ConfirmOrderButton id={item?.OID} onSuccess={fetchData} />
                                             <DeniedOrderButton id={item?.OID} onSuccess={fetchData} />
                                         </td>
-                                        <td className="px-6 text-center py-2">{item?.tables_id || ""}</td>
+                                        <td className="px-6 text-center py-2">{item?.noTable || ""}</td>
                                         </>
                                     )}
                                     <td className="px-6 text-center py-2">{item?.OID}</td>

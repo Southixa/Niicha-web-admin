@@ -36,6 +36,7 @@ export const dateTimeToHMS = (date) => {
 }
 
 export const cloudinaryResizeImage = (url, size) => {
+  if(!url || url === "") return "";
   return url.replace("image/upload/", `w_${size}/`)
 }
 

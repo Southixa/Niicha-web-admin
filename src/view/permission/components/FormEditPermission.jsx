@@ -52,7 +52,7 @@ export const FormEditPermission = () => {
                 enableReinitialize={true}
                 initialValues={{
                     username: currentUser?.username || "",
-                    password: "*****" || "",
+                    password: "",
                     role: currentUser?.role || "",
 
                 }}
@@ -71,7 +71,7 @@ export const FormEditPermission = () => {
                             <ErrorMessage component={"div"} className="text-red-500" name="username" />
                             {/*------ password ------*/}
                             <label className="block mb-1 text-sm font-medium text-gray-900 mt-8">ລະຫັດຜ່ານ</label>
-                            <Field disabled={true} type="text" name="password" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg block w-full p-2.5 disabled:opacity-50" placeholder="ປ້ອນລະຫັດຜ່ານ"/>
+                            <Field disabled={isSubmitting || loading} type="text" name="password" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg block w-full p-2.5 disabled:opacity-50" placeholder="ປ້ອນລະຫັດຜ່ານ"/>
                             <ErrorMessage component={"div"} className="text-red-500" name="password" />
                             {/*------ role ------*/}
                             <label className="block mb-1 text-sm font-medium text-gray-900 mt-8">ສິດເຂົ້າໃຊ້</label>

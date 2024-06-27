@@ -47,6 +47,7 @@ export const UpdateUserApi = async (id, data) => {
     const mappingData = {
         username: data?.username || "",
         role: data?.role || "",
+        password: data?.password || "",
     };
     try {
       const response = await axios.put(`${ApiPath.updateUser}${id}`, mappingData, getHeaderConfig());

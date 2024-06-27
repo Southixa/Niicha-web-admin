@@ -52,8 +52,8 @@ export const FormAddEmployee = () => {
                             <Field disabled={isSubmitting} type="text" name="firstname" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg block w-full p-2.5 disabled:opacity-50" placeholder="ປ້ອນຊື່"/>
                             <ErrorMessage component={"div"} className="text-red-500" name="firstname" />
                             {/*------ lastname ------*/}
-                            <label className="block mb-1 text-sm font-medium text-gray-900 mt-8">ລະຫັດຜ່ານ</label>
-                            <Field disabled={isSubmitting} type="text" name="lastname" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg block w-full p-2.5 disabled:opacity-50" placeholder="ປ້ອນນາມສະກຸ່ນ"/>
+                            <label className="block mb-1 text-sm font-medium text-gray-900 mt-8">ນາມສະກຸນ</label>
+                            <Field disabled={isSubmitting} type="text" name="lastname" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg block w-full p-2.5 disabled:opacity-50" placeholder="ປ້ອນນາມສະກຸນ"/>
                             <ErrorMessage component={"div"} className="text-red-500" name="lastname" />
                             {/*------ gender ------*/}
                             <label className="block mb-1 text-sm font-medium text-gray-900 mt-8">ເພດ</label>

@@ -21,9 +21,9 @@ export const LoginApi = async ( username, password ) => {
        localStorage.setItem("UID", response.data.data.UID);
        localStorage.setItem("username", response.data.data.username);
        localStorage.setItem("role", encryptData(response.data.data.role));
-       console.log("token ==>");
-       console.log(response);
-       console.log(response?.data?.data?.token);
+      //  console.log("token ==>");
+      //  console.log(response);
+      //  console.log(response?.data?.data?.token);
             
         return true;
       } else {

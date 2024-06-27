@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Sidebar from '../../components/Sidebar'
 import { OrderList } from './components/OrderList';
-import OrderStatic from './components/orderStatic';
+import OrderStatic from './components/OrderStatic';
 
 export const Order = () => {
 

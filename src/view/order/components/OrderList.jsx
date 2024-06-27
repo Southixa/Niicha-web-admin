@@ -48,9 +48,9 @@ export const OrderList = () => {
 
                 <div className=' mt-10 w-full flex items-center justify-center mb-8'>
                         <div className=' flex gap-20'>
-                            <h4 onClick={() => setSelectedStatus("ກຳລັງດຳເນີນ")} className={`bg-yellow-300 w-[220px] font-medium  text-center py-2 rounded-md cursor-pointer ${(selectedStatus === "ກຳລັງດຳເນີນ") ? "border-2 border-gray-700 shadow-md" : "opacity-70"}`}>ລໍຖ້າອະນຸມັດ</h4>
-                            <h4 onClick={() => setSelectedStatus("ຍົກເລີກ")} className={`bg-red-700 w-[220px] font-medium text-white text-center py-2 rounded-md cursor-pointer ${(selectedStatus === "ຍົກເລີກ") ? "border-2 border-gray-700 shadow-md" : "opacity-70"}`}>ອໍເດີ້ທີ່ຍົກເລີກ</h4>
-                            <h4 onClick={() => setSelectedStatus("ສຳເລັດ")} className={` bg-green-300 w-[220px] font-medium  text-center py-2 rounded-md cursor-pointer ${(selectedStatus === "ສຳເລັດ") ? "border-2 border-gray-700 shadow-md" : "opacity-70"}`}>ອໍເດີ້ທີ່ສຳເລັດ</h4>
+                            <button disabled={loading} onClick={() => setSelectedStatus("ກຳລັງດຳເນີນ")} className={`bg-yellow-300 disabled:opacity-40 w-[220px] font-medium  text-center py-2 rounded-md cursor-pointer ${(selectedStatus === "ກຳລັງດຳເນີນ") ? "border-2 border-gray-700 shadow-md" : "opacity-70"}`}>ລໍຖ້າອະນຸມັດ</button>
+                            <button disabled={loading} onClick={() => setSelectedStatus("ຍົກເລີກ")} className={`bg-red-700 disabled:opacity-40 w-[220px] font-medium text-white text-center py-2 rounded-md cursor-pointer ${(selectedStatus === "ຍົກເລີກ") ? "border-2 border-gray-700 shadow-md" : "opacity-70"}`}>ອໍເດີ້ທີ່ຍົກເລີກ</button>
+                            <button disabled={loading} onClick={() => setSelectedStatus("ສຳເລັດ")} className={` bg-green-300 disabled:opacity-40 w-[220px] font-medium  text-center py-2 rounded-md cursor-pointer ${(selectedStatus === "ສຳເລັດ") ? "border-2 border-gray-700 shadow-md" : "opacity-70"}`}>ອໍເດີ້ທີ່ສຳເລັດ</button>
                         </div>
                     </div>
             
